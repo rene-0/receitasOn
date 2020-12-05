@@ -1,0 +1,201 @@
+body{
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Roboto', sans-serif;
+	background-color: #EFEFEF;
+}
+.wrapper{
+	display: flex;
+}
+.hero-image{
+	position: relative;
+	height: 500px;
+	overflow: hidden;
+	background: url(../img/hero2.jpg);
+	background-size: cover;
+}
+.hero-image .container{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	overflow: hidden;
+	color: white;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+.hero-image .container h1{
+	font-size: 67px;
+	text-shadow: 2px 2px #585858;
+	text-align: center;
+}
+.hero-image .container form{
+	margin: 0px;
+	display: flex;
+	align-items: center;
+	height: 45px;
+	box-shadow: 2px 2px 7px #00000042;
+}
+.hero-image .container button{
+	border: none;
+    height: 100%;
+    padding: 0px 25px;
+    background-color: #9F3A3A;
+    border-radius: 0px 5px 5px 0px;
+	color: white;
+	cursor: pointer;
+}
+.hero-image .container button:hover{
+	background-color: #bf4b4b;
+}
+.hero-image .container .search input[type='text']{
+	border: none;
+    font-size: 21px;
+    outline: none;
+    padding: 10px;
+	border-radius: 5px 0px 0px 5px;
+}
+/* Ultimos */
+main{
+	margin: 10px;
+    background-color: white;
+	border-radius: 5px;
+	box-shadow: 4px 4px 7px #00000012;
+	width: 100%;
+}
+.ultimos h1{
+	margin: 0px;
+	background-color: #FFBF00;
+	color: white;
+	padding: 5px 25px;
+	border-radius: 3px 3px 0px 0px;
+}
+.ultimos .container{
+	padding: 10px 35px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+/* Ultimos */
+/* Receita */
+.receita{
+	box-shadow: 2px 2px 7px #00000042;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	color: black;
+	text-decoration: none;
+	display: block;
+	width: 250px;
+}
+.receita img{
+	display: block;
+	width: 250px;
+}
+.receita .text{
+	display: flex;
+	align-items: center;
+	/* justify-content: space-between; */
+	flex-direction: column;
+	padding: 0px 10px;
+}
+.receita .text h5{
+	margin: 5px 0px;
+    font-size: 24px;
+    font-weight: 500;
+	text-align: center;
+}
+.receita .text .footer{
+	display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.stars{
+	display: block;
+	font-size: 25px;
+	position: relative;
+	overflow: hidden;
+	color: var(--primaria);
+}
+
+.stars-container{
+	display: inline-block;
+	position: relative;
+	height: 30px;
+}
+
+.stars .ativos{
+	position: relative;
+	z-index: 10;/* Faz com que fique por cima das inativas */
+	display: inline-block;
+	overflow: hidden;/* junto com width faz com que seja cortado dando o efeito de estrelas prenchidas em porcentagens quebradas */
+	white-space: nowrap;
+}
+
+.stars .inativos{
+	position: absolute;
+	top: 0;
+	left: 0;
+	-webkit-text-stroke: initial;
+}
+.receita .text .footer span mark{
+	color: #A11111;
+    background-color: transparent;
+}
+/* Receita */
+/* Aside */
+.wrapper aside{
+	margin: 10px;
+    background-color: white;
+	border-radius: 5px;
+	box-shadow: 4px 4px 7px #00000012;
+}
+.wrapper aside{
+	display: flex;
+	flex-direction: column;
+	/* justify-content: center; */
+	align-items: center;
+	width: 250px;
+}
+aside h3{
+	margin: 0px;
+	background-color: #FFBF00;
+	color: white;
+	padding: 5px 25px;
+	width: 100%;
+	font-size: 2em;
+	box-sizing: border-box;
+	border-radius: 3px 3px 0px 0px;
+}
+aside .container{
+	padding: 10px 25px;
+}
+/* Aside */
+/* Pages */
+.pages{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 5px;
+}
+.pages a{
+	color: black;
+    text-decoration: none;
+    background-color: white;
+    display: flex;
+    height: 40px;
+    width: 40px;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    box-shadow: 0px 4px 7px #00000025;
+    border-radius: 5px;
+	margin-right: 5px;
+}
+.pages #ativo{
+    background-color: #161616;
+    color: white;
+}
+/* Pages */

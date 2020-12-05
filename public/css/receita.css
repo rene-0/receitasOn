@@ -1,0 +1,617 @@
+body{
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Roboto', sans-serif;
+	background-color: #EFEFEF;
+}
+::selection{
+	background-color: var(--primaria);
+	color:white;
+}
+.wrapper{
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+}
+.hero-image{
+	position: relative;
+	height: 500px;
+	overflow: hidden;
+	background: url(../img/hero2.jpg);
+	background-size: cover;
+}
+.hero-image .container{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	overflow: hidden;
+	color: white;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+.hero-image .container h1{
+	font-size: 67px;
+	text-shadow: 2px 2px #585858;
+	text-align: center;
+}
+.hero-image .container form{
+	margin: 0px;
+	display: flex;
+	align-items: center;
+	height: 45px;
+	box-shadow: 2px 2px 7px #00000042;
+}
+.hero-image .container button{
+	border: none;
+    height: 100%;
+    padding: 0px 25px;
+    background-color: #9F3A3A;
+    border-radius: 0px 5px 5px 0px;
+	color: white;
+	cursor: pointer;
+}
+.hero-image .container button:hover{
+	background-color: #bf4b4b;
+}
+.hero-image .container .search input[type='text']{
+	border: none;
+    font-size: 21px;
+    outline: none;
+    padding: 10px;
+	border-radius: 5px 0px 0px 5px;
+}
+/* receita */
+main{
+	/* margin: 10px; */
+	margin-bottom: 10px;
+    background-color: white;
+	border-radius: 5px;
+	box-shadow: 4px 4px 7px #00000012;
+	box-sizing: border-box;
+	width: 100%;
+	min-height: 650px;
+}
+.stars{
+  display: block;
+  font-size: 25px;
+  position: relative;
+  overflow: hidden;
+  color: var(--secundaria);
+}
+
+.main-header .stars-container{
+  display: inline-block;
+  position: relative;
+  height: 37px;
+}
+
+.stars .ativos{
+  position: relative;
+  z-index: 10;/* Faz com que fique por cima das inativas */
+  display: inline-block;
+  overflow: hidden;/* junto com width faz com que seja cortado dando o efeito de estrelas prenchidas em porcentagens quebradas */
+  white-space: nowrap;
+}
+
+.stars .inativos{
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-text-stroke: initial;
+}
+
+main .main-header{
+	display: flex;
+	background-color: var(--primaria);
+	color: white;
+	padding: 5px 25px;
+	border-radius: 3px 3px 0px 0px;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+}
+main .main-header .stars{
+	font-size: 30px;
+	color: white;
+	cursor: pointer;
+}
+main .main-header h1{
+	margin: 0px;
+	width: 80%;
+}
+main .container{
+	padding: 10px 35px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+.carousel{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #c0c0c033;
+	/* border-radius: 3px; */
+	border-radius: 3px 3px 0px 0px;
+	padding: 5px 0px;
+	margin-bottom: 10px;
+}
+.carousel .item{
+	outline: none;
+	cursor: grab;
+}
+main .principal{
+	display: flex;
+	/* align-items:center; */
+	justify-content: space-between;
+	width: 100%;
+	margin-bottom: 5px;
+	/* box-shadow: 0px 0px 1px #00000090; */
+	/* border-radius: 5px; */
+}
+main .principal .item{
+	padding: 10px 15px;
+    box-sizing: border-box;
+	display: flex;
+	align-items: center;
+}
+main .principal .item i{
+	padding-right: 15px;
+    font-size: 47px;
+    color: var(--primaria);
+}
+main .principal .item img{
+	width: 65px;
+	height: 65px;
+	margin-right: 15px;
+	border-radius: 50%;
+}
+main .principal .item mark{
+	color: #A11111;
+    background-color: transparent;
+	text-align: center;
+    display: block;
+}
+main .principal .item mark.blue{
+	color: #1878b9;
+}
+main .principal .item p{
+	margin: 0px;
+	color: #7b7b7b;
+    font-weight: 400;
+	margin-bottom: 5px;
+	font-size: 22px;
+    text-align: center;
+}
+/* Receita */
+/* Campo padrão */
+.re-campo{
+	width: 100%;
+	background-color: white;
+	margin-bottom: 10px;
+}
+.re-header{
+	background-color: var(--primaria);
+    padding: 10px 25px;
+	color: white;
+	border-radius: 3px 3px 0px 0px;
+}
+.re-header h3{
+	margin: 0px;
+	font-size: 22px;
+	font-weight: 600;
+}
+.re-list li{
+	margin: 10px 0px;
+    font-size: 18px;
+    font-weight: 300;
+}
+/* Campo padrão */
+/* Ingredientes */
+.ingredientes{
+	background-color: var(--primaria);
+	color: white;
+	padding: 5px 0px;
+	border-radius: 3px 3px 0px 0px;
+}
+/* Ingredientes */
+/* Preparo */
+.preparo{
+	color: black;
+	padding: 0px;
+}
+.preparo ul{
+	list-style-type: decimal;
+}
+/* Preparo */
+/* Adicionais */
+.adicional .corpo{
+	padding-left: 40px;
+	font-size: 20px;
+    font-weight: 300;
+}
+/* Adicionais */
+/* Comentários */
+.comentar{
+	background-color: white;
+	border-radius: 3px;
+	box-shadow: var(--shadow-secundaria);
+	padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.comentar form{
+	padding: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.comentar form textarea{
+	background-color: var(--terciaria);
+	border: none;
+	padding: 10px 25px;
+	border-radius: 35px;
+	margin-right: 10px;
+	min-width: 85%;
+    height: 90px;
+	font-size: 20px;
+    font-weight: 500;
+    font-family: Roboto !important;
+	resize: none;
+	outline: none;
+}
+.comentar form button{
+	border: none;
+	padding: 10px 25px;
+	border-radius: 5px;
+	background-color: var(--primaria);
+	color: var(--secundaria);
+	font-size: 22px;
+    font-weight: 500;
+    font-family: Roboto;
+	outline: none;
+	cursor: pointer;
+}
+.comentar form button:hover{
+	background-color: var(--primaria-hover);
+}
+.comentarios .comentarios-container{
+	position: relative;
+}
+.comentarios .comentarios-container .loader{
+	position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ffffff9e;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.comentarios-container .loader img{
+	width: 60px;
+    height: auto;
+}
+.comentarios ul .img{
+	/* padding-right: 10px; */
+	padding-right: 25px;
+    /* box-sizing: border-box; */
+	/* width: 250px; */
+	display: flex;
+    align-items: stretch;
+	/* flex-direction: column; */
+	color: var(--especial);
+	text-align: center;
+}
+.comentarios ul .img .header{
+	display: flex;
+    flex-direction: column;
+	justify-content: space-between;
+	/* height: 65px; */
+}
+.comentarios ul .img p{
+	margin: 0px;
+    align-self: baseline;
+	word-break: break-all;
+}
+.comentarios ul .img mark{
+    color: #7b7b7b;
+	background-color: transparent;
+	text-align: start;
+}
+.comentarios ul .img img{
+	/*width: 65px;
+	height: 65px;*/
+	width: 35px;
+	height: 35px;
+	padding-right: 15px;
+	/* border-radius: 50%; */
+}
+.comentarios ul{
+	list-style-type: none;
+	padding: 0px;
+}
+.comentarios ul li{
+	display: flex;
+	text-align: unset;
+	/* padding: 10px 25px; */
+	margin: 0px 25px;
+    padding: 10px 0px;
+    box-shadow: 0px 1px #00000012;
+}
+.comentarios ul li:last-child{
+	box-shadow: unset;
+}
+.comentarios ul .text{
+	width: calc(100% - 250px);
+}
+.comentarios ul .text p{
+	margin: 0px;
+    font-weight: 500;
+    line-height: 18px;
+}
+.comentarios .disabled{
+	background-color: var(--terciaria);
+    margin: 0px 20px 10px 20px;
+    padding: 15px;
+    border-radius: 3px;
+    color: #888888;
+}
+/* Comentários */
+/* Mais */
+.wrapper .mais{
+	/* margin: 10px; */
+    background-color: white;
+	border-radius: 5px;
+	box-shadow: 4px 4px 7px #00000012;
+}
+.wrapper .mais .receitas{
+	display: flex;
+	/* flex-direction: column; */
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 10px 0px 10px;
+}
+.mais .receita{
+	box-shadow: 2px 2px 7px #00000042;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    color: black;
+    text-decoration: none;
+    display: block;
+    width: 250px;
+}
+.mais .receita img{
+	display: block;
+	width: 250px;
+}
+.mais .receita .text{
+	display: flex;
+	align-items: center;
+	/* justify-content: space-between; */
+	flex-direction: column;
+	padding: 0px 10px;
+}
+.mais .receita .text h5{
+	margin: 5px 0px;
+    font-size: 24px;
+    font-weight: 500;
+	text-align: center;
+}
+.mais .receita .text .footer{
+	display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.stars{
+	display: block;
+	font-size: 25px;
+	position: relative;
+	overflow: hidden;
+	color: var(--primaria);
+}
+
+.stars-container{
+	display: inline-block;
+	position: relative;
+	height: 30px;
+}
+
+.stars .ativos{
+	position: relative;
+	z-index: 10;/* Faz com que fique por cima das inativas */
+	display: inline-block;
+	overflow: hidden;/* junto com width faz com que seja cortado dando o efeito de estrelas prenchidas em porcentagens quebradas */
+	white-space: nowrap;
+}
+
+.stars .inativos{
+	position: absolute;
+	top: 0;
+	left: 0;
+	-webkit-text-stroke: initial;
+}
+.receita .text .footer{
+	display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.receita .text .footer span mark{
+	color: #A11111;
+    background-color: transparent;
+}
+.mais .receita .text .footer span mark{
+	color: #A11111;
+    background-color: transparent;
+}
+/* Mais */
+/* Owl */
+.prev{
+	left: 0;
+}
+.next{
+	right: 0;
+}
+.prev, .next{
+	background-color: #00000065;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-weight: 900;
+    font-size: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	border: none;
+	position: absolute;
+    z-index: 99;
+	outline: none;
+    cursor: pointer;
+}
+.prev:hover, .next:hover{
+	background-color: #00000085;
+}
+/* Owl */
+/* Modal */
+.stars-modal-container{
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: #00000078;
+	width: 100%;
+	height: 100%;
+	z-index: 99;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	display: none;
+}
+.stars-modal-container .stars-modal{
+	width: 350px;
+	background-color: white;
+	border-radius: 3px;
+}
+.stars-modal-container .header{
+	display: flex;
+	background-color: var(--primaria);
+	color: white;
+	padding: 5px 10px;
+	border-radius: 3px 3px 0px 0px;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+}
+.stars-modal-container .header h3{
+	margin: 0px;
+	font-size: 28px;
+}
+.stars-modal-container .body{
+    display: flex;
+	align-items: center;
+    flex-direction: column;
+	padding: 10px;
+}
+.stars-modal-container .body .stars{
+	/* text-align: center; */
+	font-size: 35px;
+}
+.stars-modal-container .body .stars .stars-container{
+	height: unset;
+}
+.stars-modal-container .body form{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0px;
+	width: 100%;
+}
+.stars-modal-container .body form input[type='range']{
+	background-color: #d3d3d3;
+	-webkit-appearance: none; /* Remove o slider padrão */
+	width: 230px;
+	height: 25px;
+	opacity: 0.7;
+	transition: opacity .2s;
+	cursor: pointer;
+	outline: none;
+	margin: 10px 0px;
+	border-radius: 12px;
+}
+.stars-modal-container .body form input[type='range']::-webkit-slider-thumb{
+	-webkit-appearance: none; /*Remove o botão padrão*/
+	appearance: none;
+	width: 25px; /*Largura especifica do botão do range*/
+	height: 25px; /*Altura especifica do botão do range*/
+	background-color: var(--primaria);
+	opacity: 0.7;
+	cursor: pointer;
+	border-radius: 50%;
+	transition: opacity .2s;
+}
+.stars-modal-container .body form input[type='range']::-webkit-slider-thumb:hover{
+	opacity: 1;
+}
+.stars-modal-container .body form input[type='range']:hover{
+	opacity: 1;
+}
+.stars-modal-container .buttons{
+	/*display: flex;
+	justify-content: space-between;*/
+	width: 100%;
+	padding: 0px 15px;
+	box-sizing: border-box;
+}
+.stars-modal-container .buttons input{
+	border: none;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 3px;
+    box-shadow: 2px 2px 7px #00000025;
+    font-weight: 600;
+    font-size: 20px;
+    cursor: pointer;
+}
+.stars-modal-container .buttons input[type='reset']{
+	background-color: #db2828;
+}
+.stars-modal-container .buttons input[type='reset']:hover{
+	background-color: #d01919;
+}
+.stars-modal-container .buttons input[type='submit']{
+	background-color: #21ba45;
+	margin-left: auto;
+    display: block;
+    margin-right: 0px;
+}
+.stars-modal-container .buttons input[type='submit']:hover{
+	background-color: #16ab39;
+}
+.stars-modal-container #hide{
+	position: absolute;
+	top: -25px;
+	right: -25px;
+	cursor: pointer;
+	font-size: 22px;
+}
+.stars-modal-container #hide:hover{
+	color: var(--primaria);
+}
+/* Modal */
+/* Tooltip */
+.tooltip{
+	top: 45px;
+}
+.tooltip:hover{
+	display: block;
+}
+.tooltip::after{
+	left: 15%;
+}
+.stars:hover + #tooltip{
+	display: block;
+}
+/* Tooltip */

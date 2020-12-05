@@ -1,0 +1,47 @@
+.wrapper{
+	justify-content: space-between;	
+}
+/* Filtros */
+.filtros{
+	padding: 10px 0px;
+    margin: 0px 10px;
+    display: flex;
+    flex-direction: column;
+}
+.filtros form{
+	box-shadow: 0px 1px #00000012;
+}
+.filtros input{
+	width: 100%;
+	border: none;
+	padding: 10px 5px;
+	background-color: var(--terciaria);
+	border-radius: 3px;
+	margin-bottom: 10px;
+	font-size: 15px;
+	align-self: end;
+}
+.filtros input[type='submit']{
+	width: unset;
+	border: none;
+	padding: 10px 25px;
+	border-radius: 5px;
+	background-color: var(--primaria);
+	color: var(--secundaria);
+	font-size: 15px;
+    font-weight: 500;
+    font-family: Roboto;
+	outline: none;
+	cursor: pointer;
+	margin-left: auto;
+    margin-right: 0;
+    display: block;
+}
+.filtros input[type='submit']:hover{
+	background-color: #ffd760;
+}
+.stars input[type='radio']{
+	display: none;
+	visibility: hidden;
+}
+/* Filtros */

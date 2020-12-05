@@ -1,0 +1,231 @@
+.wrapper{
+	box-shadow: none;
+	padding: 10px;
+	background-color: transparent;
+}
+.header{
+	display: flex;
+	/* flex-wrap: wrap; */
+}
+.add{
+	border: none;
+	background-color: #18A0FB;
+	padding: 10px;
+	border-radius: 3px;
+	width: 150px;
+    align-self: center;
+    color: white;
+	cursor: pointer;
+	box-shadow: 2px 2px 7px #00000025;
+}
+/* Campo */
+.campo{
+	padding: 15px 15px 0px 15px;
+	box-shadow: var(--shadow-secundaria);
+	border-radius: 3px;
+	display: flex;
+    flex-direction: column;
+	background-color: var(--secundaria);
+}
+.campo span{
+	margin-bottom: 5px;
+	font-weight: 600;
+}
+.campo input[type='text']{
+	border: none;
+    background-color: var(--terciaria);
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 16px;
+    outline: none;
+	font-family: 'Roboto', sans-serif;
+}
+.campo small{
+	height: 15px;
+	color: var(--especial);
+}
+.valido{
+	border: 1px solid green !important;
+    color: green;
+}
+.invalido{
+	border: 1px solid red !important;
+    color: red;
+}
+/* Campo */
+/* Header */
+.header .campo{
+	margin-right: 5px;
+	margin-bottom: 5px;
+	width: 33%;
+}
+.header .campo:last-child{
+	margin-right: 0px;
+}
+.body .campo{
+	width: 100%;
+	box-sizing: border-box;
+}
+/* Header */
+/* Body */
+.body .campo{
+	margin-bottom: 5px;
+	padding-bottom: 15px;
+}
+.body .campo.fotos #fotos{
+	width: auto;
+	margin-bottom: 5px;
+	border-radius: 3px;
+	padding: 5px;
+	display: flex;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	/* height: 350px; */
+}
+.body .campo .foto{
+	box-shadow: 2px 2px 7px #00000042;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    color: black;
+    text-decoration: none;
+    display: block;
+	width: 300px;
+	position: relative;
+}
+.body .campo .foto .imagem{
+    height: 200px;
+}
+.body .campo .foto img{
+	width: 100%;
+	/* height: auto; */
+	height: 200px;
+}
+.body .campo .foto i{
+	position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 0px 0px 0px 5px;
+    color: #fb3318;
+    font-size: 20px;
+    cursor: pointer;
+	transition: ease-in-out 0.3s;
+	box-shadow: -1px 1px 2px #00000024;
+}
+.body .campo .foto i.disabled{
+	cursor: auto;
+	color: gray;
+}
+.body .campo .foto i:hover{
+    color: #e02f17;
+	box-shadow: -3px 3px 4px #00000032;
+}
+.body .campo .foto i.disabled:hover{
+	color: gray;
+	box-shadow: -1px 1px 2px #00000024;
+}
+.body .ingrediente{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 5px;
+}
+.body .ingrediente input{
+	width: 100%;
+    height: 35px;
+    margin-right: 5px;
+}
+.ingredientes #first input{
+	margin-right: 0px;
+}
+.body .ingrediente button{
+    background-color: white;
+    border: none;
+    height: 35px;
+    width: 35px;
+    width: 45px;
+    color: #b72727;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	cursor: pointer;
+	box-shadow: 0px 0px 3px #0000003d;
+    border-radius: 3px;
+}
+.body .md-preparo{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 5px;
+}
+.body .preparo{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 5px;
+}
+.body .preparo .item{
+	background-color: white;
+    height: 35px;
+    width: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	box-shadow: 0px 0px 3px #0000003d;
+    border-radius: 3px;
+}
+.body .preparo input{
+	/* width: 100%; */
+	width: calc(100% - 80px);
+	margin: 0px 5px;
+}
+.body .preparo:first-child input{
+	width: calc(100% - 40px);
+}
+.body .preparo button{
+    background-color: white;
+    border: none;
+    height: 35px;
+    width: 35px;
+    width: 45px;
+    color: #b72727;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	cursor: pointer;
+	box-shadow: 0px 0px 3px #0000003d;
+    border-radius: 3px;
+}
+.md-preparo #first input{
+	margin-right: 0px;
+	width: calc(100% - 35px);
+}
+.botoes{
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 1px;
+}
+.botoes .bt{
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 3px;
+	box-shadow: 2px 2px 7px #00000025;
+	font-weight: 600;
+	font-size: 20px;
+	cursor: pointer;
+}
+.botoes .bt.deletar{
+	background-color: #FB3318;
+}
+.botoes .bt.pre{
+	background-color: #FFBF00;
+}
+.botoes .bt.confirmar{
+	background-color: #18A0FB;
+}
+/* Body */
+/* Textalign */
+.simditor .simditor-toolbar > ul > li > .toolbar-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

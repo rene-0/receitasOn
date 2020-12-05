@@ -1,0 +1,73 @@
+.wrapper{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 15px;
+}
+form{
+	/* padding: 15px; */
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+	border-radius: 3px;
+    width: 100%;
+	max-width: 800px;
+}
+form h1{
+	margin: 0px;
+	background-color: var(--primaria);
+	color: var(--secundaria);
+	padding: 10px 15px;
+    border-radius: 3px 3px 0px 0px;
+}
+form .campo{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding: 15px 10px 0px 10px;
+}
+form small{
+	height: 16px;
+	color: red;
+}
+form .campo:last-child{
+	padding-top: 0px;
+}
+form .campo a{
+	text-align: center;
+	margin-bottom: 5px;
+}
+form .campo span{
+	font-size: 16px;
+    font-weight: 500;
+    margin: 0px 5px 5px 0px;
+}
+form input{
+	border: none;
+    background-color: #efefef;
+    padding: 15px 15px;
+    font-size: 20px;
+	border-radius: 3px;
+	color: gray;
+	outline: none;
+}
+form input[type='submit']{
+	background-color: var(--primaria);
+	color: var(--secundaria);
+	border-radius: 3px;
+    font-size: 30px;
+    font-weight: 700;
+    font-family: Roboto;
+	cursor: pointer;
+}
+form input[type='submit']:hover{
+	background-color: var(--primaria-hover);
+}
+.valido{
+	border: 1px solid green !important;
+    color: green;
+}
+.invalido{
+	border: 1px solid red !important;
+    color: red;
+}

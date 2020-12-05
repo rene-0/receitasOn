@@ -1,0 +1,324 @@
+.wrapper{
+	justify-content: center;
+	align-items: center;
+	padding: 15px;
+	flex-direction: column;
+	min-height: calc(100% - 110px);
+}
+.conta, .envios{
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+	border-radius: 3px;
+    width: 100%;
+	margin-bottom: 15px;
+	box-shadow: 2px 2px 7px #00000042;
+}
+.conta h1, .envios h1{
+	margin: 0px;
+	background-color: var(--primaria);
+	color: var(--secundaria);
+	padding: 10px 15px;
+    border-radius: 3px 3px 0px 0px;
+}
+.descricao{
+	padding: 5px;
+	display: flex;
+}
+.descricao div{
+	display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* margin-bottom: 10px; */
+    margin-right: 10px;
+}
+.descricao img{
+	border-radius: 50%;
+    height: 70px;
+    width: 70px;
+    margin-right: 5px;
+}
+.descricao h2{
+	margin: 0px;
+}
+.descricao h5{
+	margin: 0px;
+    color: #00000090;
+	font-size: 15px;
+}
+.descricao p{
+	margin: 0px;
+	font-size: 13px;
+	margin-top: auto;
+	margin-bottom: 0px;
+}
+.conta .acoes{
+	margin-left: auto;
+	margin-right: 0px;
+}
+.conta .acoes a{
+	display: block;
+    padding: 5px 10px;
+    border: 2px solid #e81221;
+    border-radius: 3px;
+    text-decoration: none;
+    color: #e81221;
+    font-weight: bold;
+}
+.conta .acoes a:hover{
+	color: #e81221c7;
+	border: 2px solid #e81221c7;
+}
+/*Envios*/
+.container{
+	padding: 5px;
+}
+.container .header{
+	background-color: #2c2c2c;
+    color: white;
+    display: flex;
+    padding: 0px 10px;
+    border-radius: 5px 5px 0px 0px;
+    font-weight: 600;
+	margin-bottom: 10px;
+}
+.container img{
+	border-radius: 10px;
+    height: auto;
+    width: 100%;
+    margin-right: 5px;
+}
+.header .item{
+	padding: 10px 0px;
+	font-size: 18px;
+}
+.item.imagem{
+	width: 10%;
+}
+.item.nome{
+	width: 40%;
+}
+.item.status{
+	width: 20%;
+}
+.item.data{
+	width: 20%;
+}
+.item.acao{
+	width: 10%;
+}
+.corpo{
+	
+}
+.receita{
+	display: flex;
+	margin-bottom: 5px;
+}
+.corpo .item{
+	font-weight: bold;
+	padding: 0px 5px;
+}
+.corpo .nome h2{
+	font-size: 32px;
+    margin: 0px;
+}
+/* Status das receita */
+.status .analize, .status .aceito, .status .recusado, .status .removido{
+	color: white;
+	padding: 5px;
+	border-radius: 3px;
+	/* width: 100%; */
+    text-align: center;
+}
+.item.status .analize{
+	background-color: #FFBF00;
+}
+.item.status .aceito{
+	background-color: #21ba45;
+}
+.item.status .recusado{
+	background-color: #db2828;
+}
+.item.status .removido{
+	background-color: #161616;
+}
+/* Status das receita */
+/* Ações */
+.receita .botoes{
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.receita .botoes i, .receita .botoes a{
+    width: 50%;
+    padding: 3px 0px;
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+    cursor: pointer;
+	transition: transform 0.5s ease;
+	text-decoration: none;
+	display: inline-block;
+	text-align: center;
+}
+
+.receita .botoes a:first-child{
+	border-radius: 3px 0px 0px 3px;
+}
+.receita .botoes a:last-child{
+	border-radius: 0px 3px 3px 0px;
+}
+.receita .botoes a:only-child{
+	border-radius: 3px 3px 3px 3px;
+}
+
+.receita .botoes i.fa-trash{
+	background-color: #161616;
+	width: 100%;
+}
+.receita .botoes i.fa-edit{
+	background-color: #18A0FB;
+	width: 100%;
+}
+.receita .botoes i.fa-edit:hover{
+	background-color: #1694e8;
+	transform: scale(1.1);
+}
+.receita .botoes i.fa-times{
+	background-color: #FB3318;
+}
+.receita .botoes i.fa-eye{
+	background-color: #FFBF00;
+	width: 100%;
+}
+.receita .botoes i.fa-times:hover{
+	background-color: #ea2f16;
+	transform: scale(1.1);
+}
+.receita .botoes i.fa-eye:hover{
+	background-color: #FFBF00;
+	transform: scale(1.1);
+}
+.receita .botoes i.fa-trash:hover{
+	background-color: #2d2d2d;
+	transform: scale(1.1);
+}
+/*
+.corpo .acao{
+    display: flex;
+}
+.corpo .acao a{
+	
+}
+.corpo .acao a:last-child{
+	margin-left: auto;
+	margin-right: 0px;
+}
+.corpo .acao .fa-eye{
+	color: #18A0FB;
+	font-size: 22px;
+}
+.corpo .acao .fa-edit{
+	color: #FFBF00;
+	font-size: 22px;
+}
+*/
+/* Ações */
+.corpo .data p{
+	text-align: center;
+	margin: 0px;
+	font-size: 22px;
+}
+.corpo .botoes{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 5px;
+}
+.corpo .adicionar{
+	border: none;
+    background-color: #18A0FB;
+    padding: 10px;
+    border-radius: 3px;
+    width: 150px;
+    align-self: center;
+    color: white;
+    cursor: pointer;
+    box-shadow: 2px 2px 7px #00000025;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+}
+.corpo .adicionar:hover{
+	background-color: #1390e4;
+}
+/* Modal */
+.modal-container{
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: #00000078;
+	width: 100%;
+	height: 100%;
+	z-index: 99;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	display: none;
+}
+.modal{
+	border-radius: 3px;
+	display: flex;
+    flex-direction: column;
+}
+.modal .head{
+	display: flex;
+    flex-direction: column;
+	align-items: center;
+	padding: 15px 15px 5px 15px;
+}
+.modal .head i{
+	color: white;
+	font-size: 60px;
+	margin-bottom: 25px;
+}
+.modal h3{
+	margin: 0px;
+	font-size: 35px;
+	color: white;
+}
+.modal small{
+	color: white;
+	font-size: 18px;
+	margin-left: 20px;
+}
+.modal .buttons{
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+	margin-top: 35px;
+	padding: 0px 15px;
+}
+.modal .buttons button{
+	border: none;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 3px;
+    box-shadow: 2px 2px 7px #00000025;
+    font-weight: 600;
+    font-size: 20px;
+    cursor: pointer;
+}
+.modal .buttons #sim{
+	background-color: #18A0FB;
+}
+.modal .buttons #nao{
+	background-color: #FB3318;
+}
+/* Modal */

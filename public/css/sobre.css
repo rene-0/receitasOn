@@ -1,0 +1,32 @@
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+main{
+    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 4px 4px 7px #00000012;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 650px;
+}
+main .main-header{
+    display: flex;
+    background-color: var(--primaria);
+    color: white;
+    padding: 5px 25px;
+    border-radius: 3px 3px 0px 0px;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+main .main-header h1{
+	margin: 0px;
+	font-size: 38px;
+}
+main .body{
+	padding: 5px 25px;
+	font-size: 18px;
+}
