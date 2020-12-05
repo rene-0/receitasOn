@@ -69,7 +69,8 @@
 		//REMOVER O TRY/CATCH E USSAR ERROS GENÉRICOS
 		protected function comentar($id_receita = null)
 		{
-			if(isset($id_receita) && isset($_SESSION['usuario']['id_usuario']))
+			header('Content-type: application/json');//Necessário para o js entender o echo como um json
+			if(isset($id_receita) && isset($_SESSION['usuario']['id_usuario']) && isset($_POST['comentario']))
 			{
 				//Talvez remover o try catch e retornar erros genericos 
 				try
@@ -82,12 +83,11 @@
 					$ret = $comentarioDAO->inserir($comentario);
 					$ret->comentario = htmlspecialchars($ret->comentario);
 					$ret->nome = htmlspecialchars($ret->nome);
-					header('Content-type: application/json');
-					echo json_encode($ret);
+					echo json_encode('{"result" : true, "comentario" : "'.$ret->comentario.'", "nome": "'.$ret->nome.'", "data" : "'.$ret->data.'"}');
 				}
 				catch(\Exception $e)
 				{
-					echo $e->getMessage();
+					echo json_encode('{"result" : false, "msg" : "Erro ao iserir comentario!"}');
 				}
 			}
 			else
@@ -99,7 +99,8 @@
 		//REMOVER O TRY/CATCH E USSAR ERROS GENÉRICOS
 		protected function avaliar($id_receita = null)
 		{
-			if(isset($_POST['star']) && !empty($_POST['star']) && isset($_SESSION['usuario']['id_usuario']) && isset($id_receita))
+			header('Content-type: application/json');//Necessário para o js entender o echo como um json
+			if((isset($_POST['star']) && $_POST['star'] > 0 && $_POST['star'] <= 100) && !empty($_POST['star']) && isset($_SESSION['usuario']['id_usuario']) && isset($id_receita))
 			{
 				try
 				{
@@ -109,28 +110,35 @@
 					$star->setId_receita($id_receita);
 					$starDAO = new \App\Models\StarDAO();
 					
-					$ret = $starDAO->vareficarAvaliacao($star);
-					if($ret->qtd > 0)
+					$ret = $starDAO->vareficarAvaliacao($star);//Verifica se o usuário já valiou
+					if($ret->qtd > 0)//Se já avaliou
 					{
-						$starDAO->alterar($star);
-						$ret = $starDAO->buscarMediaUm($star);
-						echo json_encode($ret);
+						$ret = $starDAO->alterar($star);
+						if($ret)//Se o retorno for true, a alteração aconteceu
+						{
+							$ret = $starDAO->buscarMediaUm($star);
+							echo json_encode('{"result" : true, "msg" : "Avaliação registrada!"}');
+						}
+						else
+						{
+							echo json_encode('{"result" : false, "msg" : "Erro ao registrar avaliação!"}');
+						}
 					}
-					else
+					else//Se for a primeira avaliação
 					{
 						$starDAO->inserir($star);
 						$ret = $starDA->buscarMediaUm($star);
-						echo json_encode($ret);
+						echo json_encode('{"result" : true, "msg" : "Avaliação registrada!"}');
 					}
 				}
 				catch(\Exception $e)
 				{
-					echo $e->getMessage();
+					echo json_encode('{"result" : false, "msg" : "Erro ao registrar avaliação!"}');
 				}
 			}
 			elseif(!isset($_SESSION['usuario']['id_usuario']))
 			{
-				echo "Você precisa entrar para avaliar";
+				echo json_encode('{"result" : false, "msg" : "Você precisa entrar para enviar uma avaliação!"}');
 			}
 			else
 			{

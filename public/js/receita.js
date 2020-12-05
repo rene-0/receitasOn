@@ -33,7 +33,7 @@ $(document).ready(function(){
 				disabled.parentNode.removeChild(disabled);
 			}
 			//Remover o aviso de nenhum comentário
-			//
+			//console.log(JSON.parse(data));
 			adicionarComentario(data);
 		  }
 		});
@@ -76,14 +76,21 @@ $(document).ready(function(){
 			//console.log(data)
 			try
 			{
-				//console.log(typeof(JSON.parse(data)))
 				var obj = JSON.parse(data);
-				showToast('Avaliação registrado!');
+				//console.log(obj);
+				if(obj.result == true)
+				{
+					showToast(obj.msg);
+				}
+				else
+				{
+					showToast(obj.msg);
+				}
+				
 			}
 			catch(e)
 			{
-				//showToast('Erro - '+data);//Um erro generico seria melhor
-				showToast('Erro - Erro ao inserir avaliação');
+				showToast('Erro ao inserir avaliação!');
 			}
 		  }
 		});
@@ -91,6 +98,7 @@ $(document).ready(function(){
 });
 function adicionarComentario(data)
 {
+	//console.log(data);
 	try
 	{
 		var obj = JSON.parse(data);
@@ -126,51 +134,10 @@ function adicionarComentario(data)
 		var alvo = document.getElementById('comentar').getElementsByTagName('ul')[0];
 		//alvo.appendChild(li);
 		alvo.insertBefore(li, alvo.firstChild);
+		$('textarea[name="comentario"]')[0].value = '';//Reseta o valor do campo de comentário
 	}
 	catch(e)
 	{
-		showToast('Erro - '+data);
+		showToast('Erro ao inserir comentário ');
 	}
-	/*
-	if(typeof(obj) === 'object')
-			{
-				var obj = JSON.parse(data);
-				console.log(obj);
-				var li = document.createElement('li');
-				//Div img
-				var img = document.createElement('div');
-				img.setAttribute('class', 'img');
-					var imagem = document.createElement('img');
-					imagem.setAttribute('src','http://localhost/receitasOn/public//img/main/user.png');
-					imagem.setAttribute('title','Icone de usuário');
-				img.appendChild(imagem);
-					var header = document.createElement('div');
-					header.setAttribute('class','header');
-						var mark = document.createElement('mark');
-						mark.innerHTML = obj.nome;
-						var p = document.createElement('p');
-						p.innerHTML = obj.data;
-					header.appendChild(mark);
-					header.appendChild(p);
-				img.appendChild(header);
-				//Div img
-				//Div texto
-				var text = document.createElement('div');
-				text.setAttribute('class','text');
-					var texto = document.createElement('p');
-					texto.innerHTML = obj.comentario;
-				text.appendChild(texto);
-				//Div texto
-				li.appendChild(img);
-				li.appendChild(text);
-				//console.log(li);
-				var alvo = document.getElementById('comentar').getElementsByTagName('ul')[0];
-				//alvo.appendChild(li);
-				alvo.insertBefore(li, alvo.firstChild);
-			}
-			else
-			{
-				showToast('Erro - '+data);
-			}//End if
-	*/
 }

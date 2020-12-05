@@ -14,6 +14,7 @@
 			$stm->execute();
 		}
 		
+		//Busca a média de uma receita
 		function buscarMediaUm($star)
 		{
 			$sql = "SELECT AVG(star) FROM stars WHERE id_receita = ?";
@@ -24,7 +25,7 @@
 			$ret = $stm->fetch(PDO::FETCH_OBJ);
 			return $ret;
 		}
-		
+		//Altera a média de uma receita
 		function alterar($star)
 		{
 			$sql = "UPDATE stars SET star = ? WHERE id_receita = ? AND id_usuario = ?";
@@ -34,6 +35,7 @@
 			$stm->bindValue(2,$star->getId_receita());
 			$stm->bindValue(3,$star->getId_usuario());
 			$stm->execute();
+			return true;
 		}
 		
 		function vareficarAvaliacao($star)
