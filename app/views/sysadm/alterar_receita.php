@@ -9,7 +9,6 @@
 		<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 		<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 		<script src="<?php echo App\Core\Router::getBaseUrl(); ?>js/main.js"></script>
-		<script src="<?php echo App\Core\Router::getBaseUrl(); ?>js/sysadm/incluir_receita.js"></script>
 		<script src="<?php echo App\Core\Router::getBaseUrl(); ?>js/sysadm/alterar_receita.js"></script>
 		<title>Sysadm - Incluir Receita</title>
 		<?php if(isset($erro)){ echo "<script>$(document).ready(function(){showToast('{$erro}')})</script>";}//Se tiver erro pego pelo catch?>
