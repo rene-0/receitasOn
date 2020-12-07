@@ -6,8 +6,9 @@
 		private $nome;
 		private $caminho;
 		private $id_receita;
+		private $capa;
 		
-		function __construct($id_foto = null, $nome = null, $caminho = null, $id_receita = null)
+		function __construct($id_foto = null, $nome = null, $caminho = null, $id_receita = null, $capa = null)
 		{
 			$this->id_foto = $id_foto;
 			$this->nome = $nome;
@@ -36,10 +37,21 @@
 			return $this->id_receita;
 		}
 		
+		function getCapa()
+		{
+			return $this->capa;
+		}
 		//Set'scandir
 		function setId_foto($id_foto)
 		{
-			$this->id_foto = $id_foto;
+			if(!ctype_digit((string)$id_foto))
+			{
+				throw new \Exception('Foto inválida');
+			}
+			else
+			{
+				$this->id_foto = $id_foto;
+			}
 		}
 		
 		function setNome($nome)
@@ -78,7 +90,19 @@
 		
 		function setId_receita($id_receita)
 		{
-			$this->id_receita = $id_receita;
+			if(!ctype_digit((string)$id_receita))
+			{
+				throw new \Exception('Receita inválida');
+			}
+			else
+			{
+				$this->id_receita = $id_receita;
+			}
+		}
+
+		function setCapa($capa)
+		{
+			$this->capa = $capa;
 		}
 	}
 ?>

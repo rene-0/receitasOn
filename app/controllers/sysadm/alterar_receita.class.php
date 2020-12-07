@@ -128,10 +128,65 @@
 				}
 				catch(\Exception $e)
 				{
-					echo $e->getMessage();
+					//echo $e->getMessage();
 					throw new \Exception("Receita não encontrada",404);
 				}
 				require_once('../app/views/sysadm/alterar_receita.php');
+			}
+		}
+
+		protected function deletarFoto()
+		{
+			if(isset($_POST['id_receita']) && isset($_POST['id_foto']) && isset($_SESSION['adm']['id_adm']))
+			{
+				try
+				{
+					$receita = new \App\Models\Receita();
+					$receita->setId_receita($_POST['id_receita']);
+
+					$receitaDAO = new \App\Models\ReceitaDAO();
+					$ret = $receitaDAO->buscarUm($receita);
+					if(empty($ret))
+					{
+						throw new \Exception("Receita não encontrada");
+					}
+
+					$foto = new \App\Models\Foto();
+					$foto->setId_foto($_POST['id_foto']);
+					$foto->setId_receita($_POST['id_receita']);
+					
+					$fotoDAO = new \App\Models\FotoDAO();
+					$ret = $fotoDAO->buscarUmaFoto($foto);
+					if(empty($ret))
+					{
+						throw new \Exception("Foto não encontrada");
+					}
+					$foto->setCaminho($ret->caminho);
+					$foto->setCapa($ret->capa);
+
+					$ret = $fotoDAO->removerFoto($foto);
+
+					if($ret == true && $foto->getCapa() == 's')
+					{
+						$ret = $fotoDAO->buscarPorReceita($receita);
+						$foto->setId_foto($ret[0]->id_foto);//Substitue o id_receita com o primeiro id que for encontrado em buscarPorReceita()
+						$ret = $fotoDAO->sysadmNovaCapa($foto);
+					}
+					header('Content-type: application/json');
+					if($ret)
+					{
+						echo json_encode('{"return" : true, "msg" : "Foto removida!"}');
+					}
+					else
+					{
+						echo json_encode('{"return" : false, "msg" : "Erro ao remover foto!"}');
+					}
+				}
+				catch(\Exception $e)
+				{
+					//echo $e->getMessage();
+					throw new \Exception("Página não encontrada",404);
+				}
 			}
 		}
 	}

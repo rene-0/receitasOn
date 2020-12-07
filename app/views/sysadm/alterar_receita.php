@@ -41,12 +41,12 @@
 							<?php
 								foreach($receita->getFotos() as $key => $dados)
 								{
-									echo "<div class='foto'>";
+									echo "<div id='ft".$dados->getId_foto()."' class='foto'>";
 										echo "<div class='imagem'><img src='{$dados->getCaminho()}'></div>";
 										echo "<div class='input'>";
 											echo $dados->getNome();
 										echo "</div>";
-										echo "<i class='fas fa-times' onclick='deletarArquivo({$dados->getId_foto()})' aria-hidden='true'></i>";
+										echo "<i class='fas fa-times' onclick=\"openModal('Confirmar a remoção da foto: ".$dados->getNome()."',".$dados->getId_receita().",".$dados->getId_foto().")\" aria-hidden='true'></i>";
 									echo "</div>";
 								}
 							?>
@@ -112,7 +112,20 @@
 				</div>
 			</form>
 		</main>
-		<div id='toast'></div>
+		<div id='toast' class='toast'></div>
+		<div id='modal' class="modal-container">
+			<div class='modal'>
+				<div class='head'>
+					<i class="fas fa-trash"></i>
+					<h3 id='modal-title'></h3>
+				</div>
+				<small>Ao confirmar a foto será removida independentemente se o formulário for enviado ou não.<br>Essa alteração não pode ser desfeita</small>
+				<div class='buttons'>
+					<button id='nao' type='button'>Cancelar</button>
+					<button id='sim' type='button'>Confirmar</button>
+				</div>
+			</div>
+		</div>
 		<?php //include_once('../app/views/sysadm/footer.php'); ?>
 	</body>
 </html>

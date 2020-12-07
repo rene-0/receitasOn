@@ -9,9 +9,8 @@ $(document).ready(function(){
 	document.getElementById('add-ingredientes').addEventListener('click',adicionaIngrediente);
 	document.getElementById('add-preparo').addEventListener('click',adicionaPreparo);
 	
-	
-	
-	
+	$('#nao').click(closeModal);
+
 	//Validação
 	var form = document.getElementById('form');
 	//console.log(form);
@@ -345,10 +344,55 @@ $(document).ready(function(){
 		container.appendChild(foto);
 	}
 	
-	function deletarImagem(target)
+	function openModal(title,id_receita,id_foto)
+	{
+		$('#modal').fadeIn();
+		$('#modal').css('display','flex');
+		$('#modal-title').html(title);
+		$('#sim').attr('onclick', 'deletarFoto('+id_receita+','+id_foto+')');//Cria um evento on click com base sa função passada
+	}
+
+	function closeModal()
+	{
+		$('#modal').fadeOut();
+	}
+
+	function deletarFoto(id_receita,id_foto)
 	{
 		//console.log(target);
-		target.parentNode.parentNode.removeChild(target.parentNode);
+		$.ajax({
+			type: "POST",
+			url: document.location.origin + '/receitasOn/public/sysadm/alterar_receita' + '/deletarFoto',
+			data: { id_receita : id_receita, id_foto: id_foto},
+			beforeSend: function (){
+			  
+			},
+			success: function (ret){
+			  //console.log(ret);
+			  try
+			  {
+				var obj = JSON.parse(ret);
+				//console.log(obj);
+				//console.log(obj.result);
+				if(obj.result == true)
+				{
+					showToast(obj.msg);
+				}
+				else
+				{
+					showToast(obj.msg);
+				}
+				closeNav();
+			  }
+			  catch(e)
+			  {
+				  console.log(e);
+				showToast('Erro ao remover foto!');
+				closeNav();
+			  }
+			}
+		});
+		$('#ft'+id_foto).remove();
 	}
 	
 	//IMAGENS -------------------------
