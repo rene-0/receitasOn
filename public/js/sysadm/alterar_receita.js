@@ -158,6 +158,10 @@ $(document).ready(function(){
 				return true;
 			}
 		}
+		else//Se não colocar nenhuma foto também serve
+		{
+			return true;
+		}
 	}
 	
 	function validarExt()

@@ -7,7 +7,7 @@
 		<title>Sysadm - Listar Envios</title>
 	</head>
 	<body>
-		<?php include_once('../app/views/sysadm/nav.php'); ?>
+		<?php include_once('../app/views/sysadm/nav.php'); //var_dump($ret); ?>
 		<main class='wrapper'>
 			<form class='search' action='' method="GET">
 				<div>
@@ -51,12 +51,12 @@
 					<?php
 						foreach($ret as $dados)
 						{
-							echo "<div id='{$dados->id_receita}' class='receita'>";
-								echo "<div class='item numero'>{$dados->id_receita}</div>";
+							echo "<div id='{$dados->id_ureceita}' class='receita'>";
+								echo "<div class='item numero'>{$dados->id_ureceita}</div>";
 								echo "<div class='item criador'>";
 									echo "<a class='usuario' href='".App\Core\Router::getBaseUrl()."sysadm/listar_envios?criador={$dados->nome}'>{$dados->nome}</a>";
 								echo"</div>";
-								echo "<div id='titulo-{$dados->id_receita}' class='item titulo'>{$dados->titulo}</div>";
+								echo "<div id='titulo-{$dados->id_ureceita}' class='item titulo'>{$dados->titulo}</div>";
 								echo "<div class='item status'>";
 									if($dados->status === "ANÁLIZE")
 									{
@@ -80,19 +80,19 @@
 									echo "<div class='botoes'>";
 									if($dados->status === "ANÁLIZE")
 									{
-										echo "<i onclick='openModal(\"fas fa-check\",\"Aceitar a receita {$dados->titulo}?\",\"aceitar\",{$dados->id_receita})' class='fas fa-check'></i>";
-										echo "<i href='".App\Core\Router::getBaseUrl()."receita/index/{$dados->id_receita}' class='fas fa-eye'></i>";
-										echo "<a href='".App\Core\Router::getBaseUrl()."visualizar/index/{$dados->id_receita}'><i class='fas fa-eye'></i></a>";
+										echo "<a class='check' href='#' onclick=\"openModal('fas fa-check','Aceitar a receita: {$dados->titulo} ?','aceitar',{$dados->id_ureceita})\" ><i class='fas fa-check'></i></a>";
+										echo "<a class='eye' target='_blanck' href='".App\Core\Router::getBaseUrl()."visualizar/index/{$dados->id_ureceita}'><i class='fas fa-eye'></i></a>";
+										echo "<a class='times' href='#' onclick=\"openModal('fas fa-times','Recusar a receita: {$dados->titulo} ?','recusar',{$dados->id_ureceita})\" ><i class='fas fa-times'></i></a>";
 									}
 									elseif($dados->status === "RECUSADO")
 									{
-										echo "<i onclick='openModal(\"fas fa-trash\",\"Remover receita {$dados->titulo}?\",\"remover\",{$dados->id_receita})' class='fas fa-trash'></i>";
-										echo "<a href='".App\Core\Router::getBaseUrl()."visualizar/index/{$dados->id_receita}'><i class='fas fa-eye'></i></a>";
+										echo "<a href='#' class='trash'><i onclick='openModal(\"fas fa-trash\",\"Remover a receita: {$dados->titulo}?\",\"remover\",{$dados->id_ureceita})' class='fas fa-trash'></i></a>";
+										echo "<a class='eye' target='_blanck' href='".App\Core\Router::getBaseUrl()."visualizar/index/{$dados->id_ureceita}'><i class='fas fa-eye'></i></a>";
 									}
 									elseif($dados->status === "ACEITO")
 									{
-										echo "<i onclick='openModal(\"fas fa-trash\",\"Remover receita {$dados->titulo}?\",\"remover\",{$dados->id_receita})' class='fas fa-trash'></i>";
-										echo "<a href='".App\Core\Router::getBaseUrl()."receita/index/{$dados->id_receita}'><i class='fas fa-eye'></i></a>";
+										echo "<a class='trash' href='#'><i onclick='openModal(\"fas fa-trash\",\"Remover a receita: {$dados->titulo}?\",\"remover\",{$dados->id_ureceita})' class='fas fa-trash'></i></a>";
+										echo "<a class='eye' target='_blanck' href='".App\Core\Router::getBaseUrl()."receita/index/{$dados->id_receita}'><i class='fas fa-eye'></i></a>";
 									}
 									echo "</div>";
 								echo "</div>";

@@ -56,7 +56,7 @@
 			require_once('../app/views/sysadm/listar_envios.php');
 		}
 		
-		protected function remover()
+		protected function deletarEnvio()
 		{
 			header('Content-type: application/json');
 			if(isset($_POST['id_receita']))
@@ -73,11 +73,11 @@
 				$ret = $receitaDAO->deletarEnvio($receita, $id_ureceita);
 				if($ret)
 				{
-					echo json_encode('{"result" : true, "msg" : "Receita removida"}');
+					echo json_encode('{"result" : true, "msg" : "Evnio removida"}');
 				}
 				else
 				{
-					echo json_encode('{"result" : false, "msg" : "Erro ao remover receita"}');
+					echo json_encode('{"result" : false, "msg" : "Erro ao remover envio"}');
 				}
 			}
 			else

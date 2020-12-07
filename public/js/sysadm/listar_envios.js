@@ -5,7 +5,7 @@ function aceitar(id_receita)
 {
 	$.ajax({
 	  type: "POST",
-	  url: document.location.origin + document.location.pathname + '/aceitar',
+	  url: document.location.origin + '/receitasOn/public/sysadm/listar_envios' + '/aceitar',
 	  data: { id_receita : id_receita},
 	  beforeSend: function (){
 		
@@ -17,9 +17,9 @@ function aceitar(id_receita)
 			var obj = JSON.parse(ret);
 			if(obj.result == true)
 			{
-				$('#'+id_receita+' .fas.fa-check').remove();//Remove o botão de aceitar
-				$('#'+id_receita+' .fas.fa-times').remove();//Remove o botão de recusar
-				$('#'+id_receita+' .analize').remove();//Remove o botão de recusar
+				$('#'+id_receita+' .check').remove();//Remove o botão de aceitar
+				$('#'+id_receita+' .times').remove();//Remove o botão de recusar
+				$('#'+id_receita+' .analize').remove();//Remove o status analiz
 				$('#'+id_receita+' .status').html("<div class='aceito'>ACEITO</div>");
 				showToast('Receita aceita!');
 			}
@@ -42,7 +42,7 @@ function recusar(id_receita)
 {
 	$.ajax({
 	  type: "POST",
-	  url: document.location.origin + document.location.pathname + '/recusar',
+	  url: document.location.origin + '/receitasOn/public/sysadm/listar_envios' + '/recusar',
 	  data: { id_receita : id_receita},
 	  beforeSend: function (){
 		
@@ -57,8 +57,9 @@ function recusar(id_receita)
 			console.log(obj.result);
 			if(obj.result == true)
 			{
-				$('#'+id_receita+' .fas.fa-check').remove();//Remove o botão de aceitar
-				$('#'+id_receita+' .fas.fa-times').remove();//Remove o botão de recusar
+				$('#'+id_receita+' .check').remove();//Remove o botão de aceitar
+				$('#'+id_receita+' .times').remove();//Remove o botão de recusar
+				$('#'+id_receita+' .analize').remove();//Remove o status analiza
 				$('#'+id_receita+' .status').html("<div class='recusado'>RECUSADO</div>");
 				showToast('Receita recusada!');
 			}
@@ -82,7 +83,7 @@ function remover(id_receita)
 	console.log('Ativo');
 	$.ajax({
 	  type: "POST",
-	  url: document.location.origin + document.location.pathname + '/deletarEnvio',
+	  url: document.location.origin + '/receitasOn/public/sysadm/listar_envios' + '/deletarEnvio',
 	  data: { id_receita : id_receita},
 	  beforeSend: function (){
 		
@@ -96,8 +97,9 @@ function remover(id_receita)
 			console.log(obj.result);
 			if(obj.result == true)
 			{
-				$('#'+id_receita+' .fas.fa-eye').remove();//Remove o botão de aceitar
-				$('#'+id_receita+' .fas.fa-trash').remove();//Remove o botão de recusar
+				$('#'+id_receita+' .eye').remove();//Remove o botão de aceitar
+				$('#'+id_receita+' .trash').remove();//Remove o botão de recusar
+				$('#'+id_receita+' .status').html('')//Remove o status, seja qual for
 				$('#'+id_receita+' .status').html("<div class='removido'>REMOVIDO</div>");
 				showToast('Receita removida!');
 			}
@@ -123,18 +125,8 @@ function openModal(icon,title,func,id_receita)
 	$('#modal').css('display','flex');
 	$('#icon').attr('class',icon);
 	$('#modal-title').html(title);
-	if(func == 'aceitar')
-	{
-		$('#sim').attr('onclick', 'aceitar('+id_receita+')');
-	}
-	else if(func == 'recusar')
-	{
-		$('#sim').attr('onclick', 'recusar('+id_receita+')');
-	}
-	else if(func == 'remover')
-	{
-		$('#sim').attr('onclick', 'remover('+id_receita+')');
-	}
+	$('#sim').attr('onclick', func + '('+id_receita+')');//Cria um evento on click com base sa função passada
+
 }
 
 function closeNav()

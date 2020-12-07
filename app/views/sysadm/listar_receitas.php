@@ -64,9 +64,11 @@
 								echo "<div id='titulo-{$dados->id_receita}' class='item titulo'>{$dados->titulo}</div>";
 								echo "<div class='item data'>{$dados->data_criacao}</div>";
 								echo "<div class='item acoes'>";
-									echo "<a target='_blanck' href='".App\Core\Router::getBaseUrl()."receita/index/{$dados->id_receita}'><i class='fas fa-eye'></i></a>";
-									echo "<a href='".App\Core\Router::getBaseUrl()."sysadm/alterar_receita/index/{$dados->id_receita}'><i class='fas fa-edit'></i></a>";
-									echo "<a href='#' onclick='openModal({$dados->id_receita})' href=''><i class='fas fa-trash'></i></a>";
+									echo "<div class='botoes'>";
+										echo "<a class='eye' target='_blanck' href='".App\Core\Router::getBaseUrl()."receita/index/{$dados->id_receita}'><i class='fas fa-eye'></i></a>";
+										echo "<a class='edit' href='".App\Core\Router::getBaseUrl()."sysadm/alterar_receita/index/{$dados->id_receita}'><i class='fas fa-edit'></i></a>";
+										echo "<a class='trash' href='#' onclick='openModal({$dados->id_receita})' href=''><i class='fas fa-trash'></i></a>";
+									echo "</div>";
 								echo "</div>";
 							echo "</div>";
 						}

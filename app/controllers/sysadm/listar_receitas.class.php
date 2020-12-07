@@ -59,6 +59,7 @@
 		protected function deletarReceita()
 		{
 			//var_dump($_POST);
+			//SE FOR UMA RECEITA ENVIADA POR UM USUÁRIO E NÃO UM ADM USAR OUTRA FUNÇÃO
 			if(isset($_SESSION['adm']['id_adm']))
 			{
 				if(isset($_POST['id_receita']))

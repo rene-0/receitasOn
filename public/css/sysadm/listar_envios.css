@@ -150,9 +150,6 @@
     background-color: #2c2c2c14;
     background-color: #efefef;
 }
-.receita{
-	/* margin-bottom: 10px; */
-}
 .receita:last-child{
 	margin-bottom: 0px;
 }
@@ -163,11 +160,12 @@
     width: 100%;
 }
 .receitas .botoes i, .receitas .botoes a{
-    width: 50%;
+    width: 100%;
     padding: 3px 0px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	display: inline-block;
+	text-align: center;
+    /*align-items: center;
+    justify-content: center;*/
     border: none;
     color: white;
     font-weight: 600;
@@ -176,41 +174,40 @@
 	transition: transform 0.5s ease;
 	text-decoration: none;
 }
-.receitas .botoes i:first-child{
+.receitas .botoes a:first-child{
 	border-radius: 3px 0px 0px 3px;
 }
-.receitas .botoes i:last-child{
+.receitas .botoes a:last-child{
 	border-radius: 0px 3px 3px 0px;
 }
 .receitas .botoes:only-child{
 	border-radius: 3px 3px 3px 3px;
 }
-.receitas .botoes i.fa-trash{
+.receitas .botoes a.trash{
 	background-color: #161616;
 }
-.receitas .botoes i.fa-check{
+.receitas .botoes a.check{
 	background-color: #18A0FB;
 }
-.receitas .botoes i.fa-check:hover{
+.receitas .botoes a.check:hover{
 	background-color: #1694e8;
 	transform: scale(1.1);
 }
-.receitas .botoes i.fa-times{
+.receitas .botoes a.times{
 	background-color: #FB3318;
 }
-.receitas .botoes i.fa-eye{
+.receitas .botoes a.eye{
 	background-color: #FFBF00;
-	width: 100%;
 }
-.receitas .botoes i.fa-times:hover{
+.receitas .botoes a.times:hover{
 	background-color: #ea2f16;
 	transform: scale(1.1);
 }
-.receitas .botoes i.fa-eye:hover{
+.receitas .botoes a.eye:hover{
 	background-color: #FFBF00;
 	transform: scale(1.1);
 }
-.receitas .botoes i.fa-trash:hover{
+.receitas .botoes a.trash:hover{
 	background-color: #2d2d2d;
 	transform: scale(1.1);
 }

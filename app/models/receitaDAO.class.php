@@ -737,10 +737,16 @@
 				$where .= "u.nome = :criadoru AND ";
 			}
 			//Cria o where
-			$sql = "SELECT id_receita, titulo, temp_preparo, rendimento, adicionais, DATE_FORMAT(data_criacao,'%d/%m/%Y') 'data_criacao', DATE_FORMAT(data_modificacao,'%d/%m/%Y') 'data_modificacao', r.ativo,(20*IFNULL((SELECT AVG(star) FROM stars WHERE id_receita = r.id_receita),0)) 'estrelas', u.nome, r.status
+			/*$sql = "SELECT id_receita, titulo, temp_preparo, rendimento, adicionais, DATE_FORMAT(data_criacao,'%d/%m/%Y') 'data_criacao', DATE_FORMAT(data_modificacao,'%d/%m/%Y') 'data_modificacao', r.ativo,(20*IFNULL((SELECT AVG(star) FROM stars WHERE id_receita = r.id_receita),0)) 'estrelas', u.nome, r.status
 			FROM u_receitas r 
 			INNER JOIN usuarios u ON(r.id_usuario = u.id_usuario)
 			WHERE {$where} r.ativo = 's'
+			LIMIT :on,:per_page";*/
+			$sql = "SELECT ur.id_receita 'id_ureceita', ur.titulo, ur.temp_preparo, ur.rendimento, ur.adicionais, DATE_FORMAT(ur.data_criacao,'%d/%m/%Y') 'data_criacao', DATE_FORMAT(ur.data_modificacao,'%d/%m/%Y') 'data_modificacao', ur.ativo,(20*IFNULL((SELECT AVG(star) FROM stars WHERE id_receita = r.id_receita),0)) 'estrelas', u.nome, ur.status, r.id_receita
+			FROM u_receitas ur 
+			INNER JOIN usuarios u ON(ur.id_usuario = u.id_usuario)
+            LEFT JOIN receitas r ON (ur.id_receita = r.id_ureceita)
+			WHERE {$where} ur.ativo = 's'
 			LIMIT :on,:per_page";
 			$this->getConec();
 			$stm = Conexao::$conec->prepare($sql);
