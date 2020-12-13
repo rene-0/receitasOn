@@ -3,7 +3,7 @@ $(document).ready(function (){
 });
 function deletar(id_receita)
 {
-	console.log("Triger");
+	//console.log("Triger");
 	$.ajax({
 	  type: "POST",
 	  url: document.location.origin + '/receitasOn/public/conta' + '/deletarEnvio',
@@ -20,28 +20,28 @@ function deletar(id_receita)
 			if(obj.result == true)
 			{
 				$('#'+id_receita).remove();//Remove a receita
-				showToast('Envio removido!');
+				showToast(obj.msg);
 			}
 			else
 			{
-				showToast('Erro ao remover envio!');
+				showToast(obj.msg);
 			}
 			closeModal();
 		}
 		catch(e)
 		{
-			showToast('Erro ao remover envio!!');
+			showToast("Erro ao deletar receita!");
 			closeModal();
 		}
 	  }
 	});
 }
-function openModal(id_receita,title,func)
+function openModal(id_receita,title)
 {
 	$('#modal').fadeIn();
 	$('#modal').css('display','flex');
 	$('#modal-title').html(title);
-	$('#sim').attr('onclick', func + '('+id_receita+')');
+	$('#sim').attr('onclick', 'deletar('+id_receita+')');
 }
 function closeModal()
 {

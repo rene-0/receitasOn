@@ -73,9 +73,9 @@
 										echo "</div>";
 										echo "<div class='item acao'>";
 											echo "<div class='botoes'>";
-												echo "<a href='".App\Core\Router::getBaseUrl()."editar_receita/index/{$dados->id_receita}'><i class='fas fa-edit' aria-hidden='true'></i></a>";
-												echo "<a href='".App\Core\Router::getBaseUrl()."visualizar/index/{$dados->id_receita}'><i class='fas fa-eye' aria-hidden='true'></i></a>";
-												echo "<a onclick=\"openModal({$dados->id_receita},'Confirmar a remoção do envio {$dados->titulo}','deletar')\"><i class='fas fa-trash' aria-hidden='true'></i></a>";
+												echo "<a class='edit' href='".App\Core\Router::getBaseUrl()."alterar_envio/index/{$dados->id_receita}'><i class='fas fa-edit' aria-hidden='true'></i></a>";
+												echo "<a class='eye' href='".App\Core\Router::getBaseUrl()."visualizar/index/{$dados->id_receita}'><i class='fas fa-eye' aria-hidden='true'></i></a>";
+												echo "<a class='trash' onclick=\"openModal({$dados->id_receita},'Confirmar a remoção do envio {$dados->titulo}')\"><i class='fas fa-trash' aria-hidden='true'></i></a>";
 											echo "</div>";
 										echo "</div>";
 									echo "</div>";

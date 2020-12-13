@@ -14,7 +14,8 @@
 		private $id_usuario;
 		private $ingredientes;
 		private $preparo;
-		private $fotos;
+		private $foto;
+		private $status;
 		
 		function __construct($id_receita = null, $titulo = null, $tempo_preparo = null, $rendimento = null, $adicionais = null, $data_criacao = null, $data_modificacao = null, $ativo = null, $id_adm = null, $id_usuario = null)
 		{
@@ -94,6 +95,11 @@
 		function getFotos()
 		{
 			return $this->foto;
+		}
+
+		function getStatus()
+		{
+			return $this->status;
 		}
 		//Set's
 		function setId_receita($id_receita)
@@ -203,6 +209,18 @@
 		function setId_usuario($id_usuario)
 		{
 			$this->id_usuario = $id_usuario;
+		}
+
+		function setStatus($status)
+		{
+			if($status === 'ACEITO' || $status === 'RECUSADO' || $status === 'ANÁLIZE' || $status === 'REMOVIDO')
+			{
+				$this->status = $status;
+			}
+			else
+			{
+				throw new \Exception('Status inválido!');
+			}
 		}
 		
 		function setIngredientes($id_ingrediente,$ingrediente,$ordem,$id_receita)

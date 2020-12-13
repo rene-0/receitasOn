@@ -51,29 +51,31 @@
 		{
 			if(isset($_POST['id_receita']))
 			{
+				header('Content-type: application/json');
 				//Receita
 				$receita = new \App\Models\Receita();
 				$receita->setId_receita($_POST['id_receita']);
-				//Receita
+				$usuario = new \App\Models\Usuario($_SESSION['usuario']['id_usuario']);
 				$receitaDAO = new \App\Models\ReceitaDAO();
-				$ret = $receitaDAO->buscarUmEnvio($receita);
-				header('Content-type: application/json');
-				if($ret->status !== "ACEITO")
+				$ret = $receitaDAO->buscarEnvioPorUsuario($receita,$usuario);
+				$receita->setStatus($ret->status);
+				//Receita
+				if(empty($ret))
 				{
-					$ret = $receitaDAO->deletarUreceita($receita);
-					if($ret)
-					{
-						echo json_encode('{"result" : true, "msg" : "Envio removido"}');
-					}
-					else
-					{
-						echo json_encode('{"result" : false, "msg" : "Erro ao remover envio"}');
-					}
+					echo json_encode('{"result" : false, "msg" : "Receita não encontrada"}');
+					die();
+				}
+				
+				$ret = $receitaDAO->deletarUreceita($receita);
+				if($ret)
+				{
+					echo json_encode('{"result" : true, "msg" : "Envio removido"}');
 				}
 				else
 				{
-					echo json_encode('{"result" : false, "msg" : "Erro ao remover envio, envio deve ser"}');
+					echo json_encode('{"result" : false, "msg" : "Erro ao remover envio"}');
 				}
+
 			}
 		}
 	}

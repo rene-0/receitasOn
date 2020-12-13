@@ -86,7 +86,8 @@
 	border-radius: 10px;
     height: auto;
     width: 100%;
-    margin-right: 5px;
+	margin-right: 5px;
+	height: 70px;
 }
 .header .item{
 	padding: 10px 0px;
@@ -106,9 +107,6 @@
 }
 .item.acao{
 	width: 10%;
-}
-.corpo{
-	
 }
 .receita{
 	display: flex;
@@ -153,9 +151,6 @@
 .receita .botoes i, .receita .botoes a{
     width: 50%;
     padding: 3px 0px;
-    /* display: flex; */
-    /* align-items: center; */
-    /* justify-content: center; */
     border: none;
     color: white;
     font-weight: 600;
@@ -177,57 +172,37 @@
 	border-radius: 3px 3px 3px 3px;
 }
 
-.receita .botoes i.fa-trash{
+.receita .botoes a.trash{
 	background-color: #161616;
 	width: 100%;
 }
-.receita .botoes i.fa-edit{
+.receita .botoes a.edit{
 	background-color: #18A0FB;
 	width: 100%;
 }
-.receita .botoes i.fa-edit:hover{
+.receita .botoes a.edit:hover{
 	background-color: #1694e8;
 	transform: scale(1.1);
 }
-.receita .botoes i.fa-times{
+.receita .botoes a.times{
 	background-color: #FB3318;
 }
-.receita .botoes i.fa-eye{
+.receita .botoes a.eye{
 	background-color: #FFBF00;
 	width: 100%;
 }
-.receita .botoes i.fa-times:hover{
+.receita .botoes a.times:hover{
 	background-color: #ea2f16;
 	transform: scale(1.1);
 }
-.receita .botoes i.fa-eye:hover{
+.receita .botoes a.eye:hover{
 	background-color: #FFBF00;
 	transform: scale(1.1);
 }
-.receita .botoes i.fa-trash:hover{
+.receita .botoes a.trash:hover{
 	background-color: #2d2d2d;
 	transform: scale(1.1);
 }
-/*
-.corpo .acao{
-    display: flex;
-}
-.corpo .acao a{
-	
-}
-.corpo .acao a:last-child{
-	margin-left: auto;
-	margin-right: 0px;
-}
-.corpo .acao .fa-eye{
-	color: #18A0FB;
-	font-size: 22px;
-}
-.corpo .acao .fa-edit{
-	color: #FFBF00;
-	font-size: 22px;
-}
-*/
 /* Ações */
 .corpo .data p{
 	text-align: center;

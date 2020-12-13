@@ -1,6 +1,6 @@
 <?php
-	namespace App\Controllers\Sysadm;
-	class Alterar_Receita extends Controller
+	namespace App\Controllers;
+	class Alterar_Envio extends Controller
 	{
 		function __call($name, $args)
 		{
@@ -13,7 +13,11 @@
 		{
 			//echo "Antes";
 			//Teste de login
-			parent::before();
+			if(!isset($_SESSION['usuario']['id_usuario']))
+			{
+				header("Location:".\App\Core\Router::getBaseUrl().'login');
+				die();
+			}
 		}
 		
 		protected function after()
@@ -30,23 +34,28 @@
 			}
 			if(isset($_POST['input']))
 			{
-				try
+				$receita = new \App\Models\Receita();
+				$receita->setId_receita($id_receita);
+				$receita->setTitulo($_POST['titulo']);
+				$receita->setTempo_preparo($_POST['tempo_preparo']);
+				$receita->setRendimento($_POST['rendimento']);
+				$receita->setAdicionais($_POST['adicionais']);
+
+				$receitaDAO = new \App\Models\ReceitaDAO();
+				$ret = $receitaDAO->buscarUmEnvio($receita);
+				$receita->setStatus($ret->status);
+
+				$usuario = new \App\Models\Usuario($_SESSION['usuario']['id_usuario']);
+				foreach($_POST['ingrediente'] as $key => $dados)
 				{
-					$receita = new \App\Models\Receita();
-					$receita->setId_receita($id_receita);
-					$receita->setTitulo($_POST['titulo']);
-					$receita->setTempo_preparo($_POST['tempo_preparo']);
-					$receita->setRendimento($_POST['rendimento']);
-					$receita->setAdicionais($_POST['adicionais']);
-					$usuario = new \App\Models\Usuario($_SESSION['adm']['id_adm']);
-					foreach($_POST['ingrediente'] as $key => $dados)
-					{
-						$receita->setIngredientes(null,$dados,$key+1,null);
-					}
-					foreach($_POST['preparo'] as $key => $dados)
-					{
-						$receita->setPreparo(null,$dados,$key+1,null);
-					}
+					$receita->setIngredientes(null,$dados,$key+1,null);
+				}
+				foreach($_POST['preparo'] as $key => $dados)
+				{
+					$receita->setPreparo(null,$dados,$key+1,null);
+				}
+				if($receita->getStatus() != 'ACEITO')
+				{
 					foreach($_FILES['fotos']['name'] as $key => $dados)
 					{
 						if(!empty($_FILES['fotos']['name'][$key]))
@@ -55,10 +64,10 @@
 							{
 								throw new \Exception('Imagem inválida');
 							}
-							elseif($_FILES['fotos']['size'][$key] > 15000000)//Maior que 15mb
+							elseif($_FILES['fotos']['size'][$key] > 7000000)//Maior que 15mb
 							{
 								//var_dump($_FILES['fotos']['size'][$key]);
-								throw new \Exception('Imagem não pode ser maior que 15mb');
+								throw new \Exception('Imagem não pode ser maior que 7mb');
 							}
 							else
 							{
@@ -66,16 +75,11 @@
 								$receita->setFoto(null, time().'_'.$_FILES['fotos']['name'][$key], $_FILES['fotos']['tmp_name'][$key], null);
 							}
 						}
-						
 					}
-					$receitaDAO = new \App\Models\ReceitaDAO();
-					$receitaDAO->sysadmAlterar($receita,$usuario);
-					header("Location: ".\App\Core\Router::getBaseUrl()."sysadm/listar_receitas");
 				}
-				catch(\Exception $e)
-				{
-					$erro = $e->getMessage();
-				}
+				//var_dump($receita);
+				$receitaDAO->alterarEnvio($receita,$usuario);
+				header("Location: ".\App\Core\Router::getBaseUrl()."conta");
 			}
 			else
 			{
@@ -84,7 +88,7 @@
 					$receita = new \App\Models\Receita();
 					$receita->setId_receita($id_receita);
 					$receitaDAO = new \App\Models\ReceitaDAO();
-					$ret = $receitaDAO->buscarUm($receita);
+					$ret = $receitaDAO->buscarUmEnvio($receita);
 					//var_dump($ret);
 					if(empty($ret))
 					{
@@ -95,10 +99,10 @@
 						$receita->setTempo_preparo($ret->temp_preparo);
 						$receita->setRendimento($ret->rendimento);
 						$receita->setAdicionais($ret->adicionais);
-						$receita->setId_adm($ret->id_adm);
+						//$receita->setId_adm($ret->id_adm);
 						//Ingredientes
 							$ingredienteDAO = new \App\Models\IngredienteDAO();
-							$ingredientes = $ingredienteDAO->buscarPorReceita($receita);
+							$ingredientes = $ingredienteDAO->buscarPorEnvio($receita);
 							//var_dump($ingredientes);
 							foreach($ingredientes as $dados)
 							{
@@ -107,7 +111,7 @@
 						//Ingredientes
 						//Preparo
 							$preparoDAO = new \App\Models\PreparoDAO();
-							$preparo = $preparoDAO->buscarPorReceita($receita);
+							$preparo = $preparoDAO->buscarPorEnvio($receita);
 							foreach($preparo as $dados)
 							{
 								$receita->setPreparo($dados->id_preparo,$dados->preparo,$dados->ordem,$dados->id_receita);
@@ -115,7 +119,7 @@
 						//Preparo
 						//Fotos
 							$fotosDAO = new \App\Models\FotoDAO();
-							$fotos = $fotosDAO->buscarPorReceita($receita);
+							$fotos = $fotosDAO->buscarPorEnvio($receita);
 							foreach($fotos as $dados)
 							{
 								$receita->setFoto($dados->id_foto, $dados->nome, $dados->caminho, $dados->id_receita);
@@ -131,13 +135,13 @@
 					//echo $e->getMessage();
 					throw new \Exception("Receita não encontrada",404);
 				}
-				require_once('../app/views/sysadm/alterar_receita.php');
+				require_once('../app/views/alterar_envio.php');
 			}
 		}
 
 		protected function deletarFoto()
 		{
-			if(isset($_POST['id_receita']) && isset($_POST['id_foto']) && isset($_SESSION['adm']['id_adm']))
+			if(isset($_POST['id_receita']) && isset($_POST['id_foto']) && isset($_SESSION['usuario']['id_usuario']))
 			{
 				try
 				{
@@ -145,10 +149,16 @@
 					$receita->setId_receita($_POST['id_receita']);
 
 					$receitaDAO = new \App\Models\ReceitaDAO();
-					$ret = $receitaDAO->buscarUm($receita);
+					$ret = $receitaDAO->buscarUmEnvio($receita);
 					if(empty($ret))
 					{
 						throw new \Exception("Receita não encontrada");
+					}
+					elseif($ret->status === 'ACEITO')
+					{
+						header('Content-type: application/json');
+						echo json_encode('{"result" : false, "msg" : "Não é possível deletar fotos de uma receita aceita!"}');
+						die();//Poderia ser também um return false
 					}
 
 					$foto = new \App\Models\Foto();
@@ -156,7 +166,7 @@
 					$foto->setId_receita($_POST['id_receita']);
 					
 					$fotoDAO = new \App\Models\FotoDAO();
-					$ret = $fotoDAO->buscarUmaFoto($foto);
+					$ret = $fotoDAO->buscarUmaFotoEnvio($foto);
 					if(empty($ret))
 					{
 						throw new \Exception("Foto não encontrada");
@@ -164,28 +174,40 @@
 					$foto->setCaminho($ret->caminho);
 					$foto->setCapa($ret->capa);
 
-					$ret = $fotoDAO->sysadmRemoverFoto($foto);
-
-					if($ret == true && $foto->getCapa() == 's')
+					$ret = $fotoDAO->buscarPorEnvio($receita);
+					if(count($ret) <= 1)
 					{
-						$ret = $fotoDAO->buscarPorReceita($receita);
-						$foto->setId_foto($ret[0]->id_foto);//Substitue o id_receita com o primeiro id que for encontrado em buscarPorReceita()
-						$ret = $fotoDAO->sysadmNovaCapa($foto);
-					}
-					header('Content-type: application/json');
-					if($ret)
-					{
-						echo json_encode('{"return" : true, "msg" : "Foto removida!"}');
+						header('Content-type: application/json');
+						echo json_encode('{"result" : false, "msg" : "Receita deve conter no minimo uma foto!"}');
+						die();
 					}
 					else
 					{
-						echo json_encode('{"return" : false, "msg" : "Erro ao remover foto!"}');
+						$ret = $fotoDAO->removerFoto($foto);
+					}
+
+					if($ret == true && $foto->getCapa() == 's')
+					{
+						$ret = $fotoDAO->buscarPorEnvio($receita);
+						$foto->setId_foto($ret[0]->id_foto);//Substitue o id_receita com o primeiro id que for encontrado em buscarPorEnvio()
+						$ret = $fotoDAO->novaCapa($foto);
+					}
+
+					if($ret)
+					{
+						header('Content-type: application/json');
+						echo json_encode('{"result" : true, "msg" : "Foto removida!"}');
+					}
+					else
+					{
+						header('Content-type: application/json');
+						echo json_encode('{"result" : false, "msg" : "Erro ao remover foto!"}');
 					}
 				}
 				catch(\Exception $e)
 				{
-					//echo $e->getMessage();
-					throw new \Exception("Página não encontrada",404);
+					echo $e->getMessage();
+					//throw new \Exception("Página não encontrada",404);
 				}
 			}
 		}

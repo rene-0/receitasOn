@@ -1012,23 +1012,26 @@
 						}
 						else
 						{
-							//Se tudo deu certo remove as fotos
-							foreach($fotos as $key => $dados)
+							if($receita->getStatus() != 'ACEITO')
 							{
-								$base_dir = dirname(dirname(dirname(__FILE__)));//C:\xampp\htdocs\receitasOn
-								$ex = explode('/',$dados->caminho);
-								$file = "{$base_dir}\\public\\{$ex[count($ex)-2]}\\{$ex[count($ex)-1]}";//O aquivo que vai ser deletado
-								if(file_exists($file))//Só deleta se ele existir
+								//Se tudo deu certo remove as fotos
+								foreach($fotos as $key => $dados)
 								{
-									if(!unlink($file))
+									$base_dir = dirname(dirname(dirname(__FILE__)));//C:\xampp\htdocs\receitasOn
+									$ex = explode('/',$dados->caminho);
+									$file = "{$base_dir}\\public\\{$ex[count($ex)-2]}\\{$ex[count($ex)-1]}";//O aquivo que vai ser deletado
+									if(file_exists($file))//Só deleta se ele existir
 									{
-										throw new \Exeception("Erro ao deletar imagem!");
-										return false;
+										if(!unlink($file))
+										{
+											throw new \Exeception("Erro ao deletar imagem!");
+											return false;
+										}
 									}
-								}
-								else
-								{
-									//Quando criar o logger - Colocar no log que o aquivo que está tentando ser deletado não existe
+									else
+									{
+										//Quando criar o logger - Colocar no log que o aquivo que está tentando ser deletado não existe
+									}
 								}
 							}
 							Conexao::$conec->commit();
@@ -1037,6 +1040,140 @@
 					}
 				}
 			}
+		}
+
+		function alterarEnvio($receita,$usuario)
+		{
+			$this->getConec();
+			Conexao::$conec->beginTransaction();
+			/*
+			*	Essa parte de deletar usa o mesmo código de deletar(), porem só a parte de ingredientes e preparo. Para deletar fotos uma função própria sera feita no DAO de fotos, comentários e stars não deve ser alterado.
+			*/
+			//Deleta antes de reinserir
+				//É necessário deletar campos de ingredites, fotos, preparo, comentarios e stars antes
+				$sql = "DELETE FROM u_ingredientes WHERE id_receita = ?";//Deleta ingredientes
+				$stm = Conexao::$conec->prepare($sql);
+				$stm->bindValue(1,$receita->getId_receita());
+				$ret = $stm->execute();
+				if(!$ret)
+				{
+					Conexao::$conec->rollBack();
+					return false;
+				}
+				else
+				{
+					$sql = "DELETE FROM u_preparo WHERE id_receita = ?";//Deleta modo de preparo
+					$stm = Conexao::$conec->prepare($sql);
+					$stm->bindValue(1,$receita->getId_receita());
+					$ret = $stm->execute();
+					if(!$ret)
+					{
+						Conexao::$conec->rollBack();
+						return false;
+					}
+				}
+			//Deleta antes de reinserir
+			$sql = "UPDATE u_receitas SET titulo = ?,temp_preparo = ?,rendimento = ?, adicionais = ? WHERE id_receita = ?";
+			$stm = Conexao::$conec->prepare($sql);
+			$stm->bindValue(1,$receita->getTitulo());
+			$stm->bindValue(2,$receita->getTempo_preparo());
+			$stm->bindValue(3,$receita->getRendimento());
+			$stm->bindValue(4,$receita->getAdicionais());
+			$stm->bindValue(5,$receita->getId_receita());
+			$ret = $stm->execute();
+			$id_receita = $receita->getId_receita();
+			if(!$ret)
+			{
+				Conexao::$conec->rollBack();
+				throw new \Exception("Erro ao inserir receita");
+				return false;//Se falhar
+			}
+			else
+			{
+				$sql = "INSERT INTO u_ingredientes (ingrediente,ordem,id_receita) VALUES(?,?,?)";
+				foreach($receita->getIngredientes() as $dados)
+				{
+					$stm = Conexao::$conec->prepare($sql);
+					$stm->bindValue(1,$dados->getIngrediente());
+					$stm->bindValue(2,$dados->getOrdem());
+					$stm->bindValue(3,$id_receita);
+					$ret = $stm->execute();
+					if(!$ret)
+					{
+						Conexao::$conec->rollBack();
+						throw new \Exception("Erro ao inserir ingrediente");
+						break;
+						return false;//Se falhar
+					}
+				}
+				$sql = "INSERT INTO u_preparo (preparo,ordem,id_receita) VALUES(?,?,?)";
+				foreach($receita->getPreparos() as $dados)
+				{
+					$stm = Conexao::$conec->prepare($sql);
+					$stm->bindValue(1,$dados->getPreparo());
+					$stm->bindValue(2,$dados->getOrdem());
+					$stm->bindValue(3,$id_receita);
+					$ret = $stm->execute();
+					if(!$ret)
+					{
+						Conexao::$conec->rollBack();
+						throw new \Exception("Erro ao inserir preparo");
+						break;
+						return false;//Se falhar
+					}
+				}
+				//Fotos banco de dados
+				if($receita->getStatus() != 'ACEITO' && $receita->getFotos() != null && !empty($receita->getFotos()))
+				{
+					$sql = "INSERT INTO u_fotos (nome,caminho,capa,id_receita) VALUES(?,?,?,?)";
+					foreach($receita->getFotos() as $key => $dados)
+					{
+						$stm = Conexao::$conec->prepare($sql);
+						$stm->bindValue(1,$dados->getNome());
+						$stm->bindValue(2, \App\Core\Router::getBaseUrl()."img/".basename($dados->getNome()));
+						$stm->bindValue(3,'n');
+						$stm->bindValue(4,$id_receita);
+						$ret = $stm->execute();
+						if(!$ret)
+						{
+							Conexao::$conec->rollBack();
+							throw new \Exception("Erro ao inserir foto");
+							break;
+							return false;//Se falhar
+						}
+					}
+					//Fotos arquvio
+					//Se mover do upload se todo o metodo funcionar
+					foreach($receita->getFotos() as $dados)
+					{
+						$ret = move_uploaded_file($dados->getCaminho(), "img/".basename($dados->getNome()));
+						if(!$ret)
+						{
+							Conexao::$conec->rollBack();
+							throw new \Exception("Erro ao mover arquivo");
+							return false;//Se falhar
+						}
+					}
+				}
+				Conexao::$conec->commit();
+				return true;
+			}
+		}
+
+		function buscarEnvioPorUsuario($receita,$usuario)
+		{
+			$sql = "SELECT r.id_receita, titulo, temp_preparo, rendimento, adicionais, status, DATE_FORMAT(data_criacao,'%d/%m/%Y') 'data_criacao', DATE_FORMAT(data_modificacao,'%d/%m/%Y') 'data_modificacao', r.ativo,(20*IFNULL((SELECT AVG(star) FROM stars WHERE id_receita = r.id_receita),0)) 'estrelas', u.nome, r.id_usuario, uf.caminho, uf.capa
+			FROM u_receitas r 
+			INNER JOIN usuarios u ON(r.id_usuario = u.id_usuario)
+            INNER JOIN u_fotos uf ON(uf.id_receita = r.id_receita)
+			WHERE r.ativo = 's' AND r.id_receita = ? AND capa = 's' AND r.id_usuario";
+			$this->getConec();
+			$stm = Conexao::$conec->prepare($sql);
+			$stm->bindValue(1,$receita->getId_receita());
+			$stm->bindValue(2,$usuario->getId_usuario());
+			$stm->execute();
+			$ret = $stm->fetch(PDO::FETCH_OBJ);
+			return $ret;
 		}
 	}
 ?>

@@ -138,13 +138,8 @@
     width: 100%;
 }
 .receitas .botoes i, .receitas .botoes a{
-    width: 100%;
-	padding: 3px 0px;
-	display: inline-block;
-	text-align: center;
-    /*display: flex;
-    align-items: center;
-    justify-content: center;*/
+    width: 50%;
+    padding: 3px 0px;
     border: none;
     color: white;
     font-weight: 600;
@@ -152,6 +147,8 @@
     cursor: pointer;
 	transition: transform 0.5s ease;
 	text-decoration: none;
+	display: inline-block;
+	text-align: center;
 }
 .receitas .botoes a:first-child{
 	border-radius: 3px 0px 0px 3px;
