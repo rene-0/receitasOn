@@ -10,14 +10,17 @@ nav{
     box-sizing: border-box;
 	align-items: center;
 }
-nav ul{
+nav button{
+    outline: none;
+}
+.nav-desk{
 	margin: 0px;
     padding: 0px;
     display: flex;
     list-style-type: none;
 	font-size: 22px;
 }
-nav ul li a{
+.nav-desk li a, .nav-mobile li a{
 	display: block;
     padding: 10px 25px;
     padding: 10px;
@@ -26,13 +29,11 @@ nav ul li a{
     font-weight: 700;
 	border-radius: 3px;
 }
-nav ul li a:hover{
+nav ul li a:hover, .nav-mobile li button:hover, .btn-mobile:hover{
 	background-color: #ffd760;
 }
-nav .logo a{
+nav .logo a, .nav-mobile li button{
 	display: block;
-    color: white;
-    text-decoration: none;
     font-weight: 100;
     font-size: 32px;
 	color: white;
@@ -41,3 +42,59 @@ nav .logo a{
     border-radius: 3px;
 }
 /* NAV */
+/* MOBILE */
+.btn-mobile{
+    display: none;
+    background-color: var(--primaria);
+    border: none;
+    margin-left: auto;
+    margin-right: 0px;
+    cursor: pointer;
+    font-weight: 100;
+    font-size: 32px;
+	color: white;
+    text-decoration: none;
+	/*padding: 10px;*/
+    border-radius: 3px;
+}
+.nav-cortina{
+    display: none;
+    background-color: #16161633;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 98;
+}
+.nav-mobile{
+    margin: 0px;
+    padding: 0px;
+    flex-direction: column;
+    list-style-type: none;
+	font-size: 22px;
+    width: 150px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    background-color: var(--primaria);
+    z-index: 99;
+}
+.nav-mobile li button{
+    background-color: var(--primaria);
+    border: none;
+    margin-left: auto;
+    margin-right: 0px;
+    cursor: pointer;
+    padding: 3px 15px;
+}
+@media screen and (max-width: 560px){
+    .nav-desk{
+        display: none;
+    }
+    .btn-mobile{
+        display: block;
+    }
+}
+/* MOBILE */

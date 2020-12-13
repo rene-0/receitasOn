@@ -6,3 +6,18 @@ function showToast(text){
 	x.classList.remove("show");
 	},3000);
 }
+/* Navegação */
+$(document).ready(function (){
+	$('#btn-mobile, #mobile-close').click(function (){
+		var cortina = $('#nav-cortina');
+		if(cortina.css('display') == 'block')
+		{
+			cortina.fadeOut();
+		}
+		else
+		{
+			cortina.fadeIn();
+		}
+	});
+});
+/* Navegação */

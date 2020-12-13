@@ -12,3 +12,14 @@ footer p{
 	margin: 0px;
 }
 /* Footer */
+/**/
+@media screen and (max-width: 675px){
+    footer{
+		font-size: 13px;
+	}
+}
+@media screen and (max-width: 515px){
+    footer{
+		font-size: 11px;
+	}
+}
