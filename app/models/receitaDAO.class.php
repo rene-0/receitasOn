@@ -271,7 +271,7 @@
 		
 		function sysadmIncluir($receita,$usuario)
 		{
-			$sql = "INSERT INTO receitas (titulo,temp_preparo,rendimento,adicionais,id_adm,ativo) VALUES(?,?,?,?,?,?)";
+			$sql = "INSERT INTO receitas (titulo,temp_preparo,rendimento,adicionais,id_adm,ativo,data_criacao,data_modificacao) VALUES(?,?,?,?,?,?,?,?)";
 			$this->getConec();
 			Conexao::$conec->beginTransaction();
 			$stm = Conexao::$conec->prepare($sql);
@@ -281,6 +281,8 @@
 			$stm->bindValue(4,$receita->getAdicionais());
 			$stm->bindValue(5,$usuario->getId_usuario());
 			$stm->bindValue(6,'s');
+			$stm->bindValue(7,date("Y-m-d H:i:s"));//Criação
+			$stm->bindValue(8,date("Y-m-d H:i:s"));//Modificação
 			$ret = $stm->execute();
 			$id_receita = Conexao::$conec->lastInsertId();
 			if(!$ret)
@@ -399,13 +401,14 @@
 					}
 				}
 			//Deleta antes de reinserir
-			$sql = "UPDATE receitas SET titulo = ?,temp_preparo = ?,rendimento = ?, adicionais = ? WHERE id_receita = ?";
+			$sql = "UPDATE receitas SET titulo = ?,temp_preparo = ?,rendimento = ?, adicionais = ?, data_modificacao = ? WHERE id_receita = ?";
 			$stm = Conexao::$conec->prepare($sql);
 			$stm->bindValue(1,$receita->getTitulo());
 			$stm->bindValue(2,$receita->getTempo_preparo());
 			$stm->bindValue(3,$receita->getRendimento());
 			$stm->bindValue(4,$receita->getAdicionais());
-			$stm->bindValue(5,$receita->getId_receita());
+			$stm->bindValue(5,date("Y-m-d H:i:s"));
+			$stm->bindValue(6,$receita->getId_receita());
 			$ret = $stm->execute();
 			$id_receita = $receita->getId_receita();
 			if(!$ret)
@@ -615,7 +618,7 @@
 		
 		function usuarioEnviar($receita,$usuario)
 		{
-			$sql = "INSERT INTO u_receitas (titulo,temp_preparo,rendimento,adicionais,id_usuario,ativo,status) VALUES(?,?,?,?,?,?,?)";
+			$sql = "INSERT INTO u_receitas (titulo,temp_preparo,rendimento,adicionais,id_usuario,ativo,status,data_criacao,data_modificacao) VALUES(?,?,?,?,?,?,?,?,?)";
 			$this->getConec();
 			Conexao::$conec->beginTransaction();
 			$stm = Conexao::$conec->prepare($sql);
@@ -626,6 +629,8 @@
 			$stm->bindValue(5,$usuario->getId_usuario());
 			$stm->bindValue(6,'s');
 			$stm->bindValue(7,'ANÁLIZE');
+			$stm->bindValue(8,date("Y-m-d H:i:s"));
+			$stm->bindValue(9,date("Y-m-d H:i:s"));
 			$ret = $stm->execute();
 			$id_receita = Conexao::$conec->lastInsertId();
 			if(!$ret)
@@ -1073,13 +1078,14 @@
 					}
 				}
 			//Deleta antes de reinserir
-			$sql = "UPDATE u_receitas SET titulo = ?,temp_preparo = ?,rendimento = ?, adicionais = ? WHERE id_receita = ?";
+			$sql = "UPDATE u_receitas SET titulo = ?,temp_preparo = ?,rendimento = ?, adicionais = ?, data_modificacao = ? WHERE id_receita = ?";
 			$stm = Conexao::$conec->prepare($sql);
 			$stm->bindValue(1,$receita->getTitulo());
 			$stm->bindValue(2,$receita->getTempo_preparo());
 			$stm->bindValue(3,$receita->getRendimento());
 			$stm->bindValue(4,$receita->getAdicionais());
-			$stm->bindValue(5,$receita->getId_receita());
+			$stm->bindValue(5,date("Y-m-d H:i:s"));
+			$stm->bindValue(6,$receita->getId_receita());
 			$ret = $stm->execute();
 			$id_receita = $receita->getId_receita();
 			if(!$ret)

@@ -22,7 +22,8 @@
 	//Erro e exceção handler
 	set_error_handler('App\Core\Error::errorHandler');
 	set_exception_handler('App\Core\Error::exceptionHandler');
+	date_default_timezone_set('America/Sao_Paulo');
+	//echo date("Y-m-d H:i:s");//Padrão para sql (Ano-mês-dia Hora-minuto-segundos)
 	//Router
 	$router = new App\Core\Router();
-	//var_dump(dirname(__FILE__));
 ?>
