@@ -179,7 +179,7 @@ aside .container{
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding-bottom: 5px;
+	padding: 5px 0px;
 }
 .pages a{
 	color: black;
