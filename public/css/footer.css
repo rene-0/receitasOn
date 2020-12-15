@@ -23,3 +23,8 @@ footer p{
 		font-size: 11px;
 	}
 }
+@media screen and (max-width: 435px){
+	footer{
+		font-size: 9px;
+	}
+}

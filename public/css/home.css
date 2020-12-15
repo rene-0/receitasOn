@@ -25,6 +25,7 @@ body{
 	display: flex;
 	align-items: center;
 	flex-direction: column;
+	width: 100%;
 }
 .hero-image .container h1{
 	font-size: 67px;
@@ -199,3 +200,33 @@ aside .container{
     color: white;
 }
 /* Pages */
+
+@media screen and (max-width: 560px){
+    .hero-image .container .search input[type='text']{
+		font-size: 18px;
+	}
+	main{
+		margin: 0px;
+	}
+	.ultimos .container {
+		padding: 10px 0px;
+	}
+	/* Receitas */
+	.receita img {
+		width: 200px;
+	}
+	.receita {
+		width: 200px;
+	}
+	/* Receitas */
+}
+@media screen and (max-width: 435px){
+	/* Receitas */
+	.receita img {
+		width: 300px;
+	}
+	.receita {
+		width: 300px;
+	}
+	/* Receitas */
+}
