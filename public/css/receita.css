@@ -11,7 +11,7 @@ body{
 .wrapper{
 	display: flex;
 	flex-direction: column;
-	padding: 10px;
+	/*padding: 10px;*/
 }
 .hero-image{
 	position: relative;
@@ -65,13 +65,13 @@ body{
 }
 /* receita */
 main{
-	/* margin: 10px; */
-	margin-bottom: 10px;
+	margin: 10px;
+	/*margin-bottom: 10px;*/
     background-color: white;
 	border-radius: 5px;
 	box-shadow: 4px 4px 7px #00000012;
 	box-sizing: border-box;
-	width: 100%;
+	/*width: 100%;*/
 	min-height: 650px;
 }
 .stars{
@@ -102,7 +102,6 @@ main{
   left: 0;
   -webkit-text-stroke: initial;
 }
-
 main .main-header{
 	display: flex;
 	background-color: var(--primaria);
@@ -112,6 +111,7 @@ main .main-header{
 	justify-content: space-between;
 	align-items: center;
 	position: relative;
+	flex-wrap: wrap;
 }
 main .main-header .stars{
 	font-size: 30px;
@@ -120,7 +120,6 @@ main .main-header .stars{
 }
 main .main-header h1{
 	margin: 0px;
-	width: 80%;
 }
 main .container{
 	padding: 10px 35px;
@@ -146,15 +145,13 @@ main .container{
 }
 main .principal{
 	display: flex;
-	/* align-items:center; */
-	justify-content: space-between;
+	justify-content: space-evenly;
 	width: 100%;
 	margin-bottom: 5px;
-	/* box-shadow: 0px 0px 1px #00000090; */
-	/* border-radius: 5px; */
+	flex-wrap: wrap;
 }
 main .principal .item{
-	padding: 10px 15px;
+	padding: 10px 0px;
     box-sizing: border-box;
 	display: flex;
 	align-items: center;
@@ -254,7 +251,6 @@ main .principal .item p{
 	border: none;
 	padding: 10px 25px;
 	border-radius: 35px;
-	margin-right: 10px;
 	min-width: 85%;
     height: 90px;
 	font-size: 20px;
@@ -300,7 +296,7 @@ main .principal .item p{
 	/* padding-right: 10px; */
 	padding-right: 25px;
     /* box-sizing: border-box; */
-	/* width: 250px; */
+	width: 155px;
 	display: flex;
     align-items: stretch;
 	/* flex-direction: column; */
@@ -322,6 +318,10 @@ main .principal .item p{
     color: #7b7b7b;
 	background-color: transparent;
 	text-align: start;
+	max-width: 80px;
+    max-height: 19px;
+    overflow: hidden;
+    word-break: break-all;
 }
 .comentarios ul .img img{
 	/*width: 65px;
@@ -347,16 +347,17 @@ main .principal .item p{
 	box-shadow: unset;
 }
 .comentarios ul .text{
-	width: calc(100% - 250px);
+	width: calc(100% - 155px);
 }
 .comentarios ul .text p{
 	margin: 0px;
     font-weight: 500;
-    line-height: 18px;
+	line-height: 18px;
+	word-break: break-all;
 }
 .comentarios .disabled{
 	background-color: var(--terciaria);
-    margin: 0px 20px 10px 20px;
+    margin: 10px 20px 10px 20px;
     padding: 15px;
     border-radius: 3px;
     color: #888888;
@@ -371,7 +372,7 @@ main .principal .item p{
 }
 .wrapper .mais .receitas{
 	display: flex;
-	/* flex-direction: column; */
+	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
 	padding: 10px 10px 0px 10px;
@@ -484,7 +485,7 @@ main .principal .item p{
 	background-color: #00000078;
 	width: 100%;
 	height: 100%;
-	z-index: 99;
+	z-index: 90;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -615,3 +616,49 @@ main .principal .item p{
 	display: block;
 }
 /* Tooltip */
+@media screen and (max-width: 850px){
+	.comentar form {
+		flex-wrap: wrap;
+		align-items: center;
+	}
+	.comentar form textarea {
+		width: 100%;
+	}
+}
+@media screen and (max-width: 720px){
+	main .main-header h1 {
+		text-align: center;
+	}
+	main .main-header {
+		justify-content: center;
+	}
+}
+@media screen and (max-width: 560px){
+	main{
+		margin: 10px 0px;
+	}
+	/* Receitas */
+	.receitas .receita img {
+		width: 200px;
+	}
+	.receitas .receita {
+		width: 200px;
+	}
+	/* Receitas */
+	main .container {
+		padding: 10px;
+	}
+}
+@media screen and (max-width: 460px){
+	/* Receitas */
+	.receitas .receita img {
+		width: 300px;
+	}
+	.receitas .receita {
+		width: 300px;
+	}
+	/* Receitas */
+	.wrapper .mais .receitas {
+		justify-content: center;
+	}
+}
