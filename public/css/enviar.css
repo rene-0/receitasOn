@@ -229,6 +229,9 @@
     justify-content: center;
     align-items: center;
 }
+.ql-container.ql-snow {
+	min-height: 100px;
+}
 /* Modal */
 .modal-container{
 	position: fixed;
@@ -294,3 +297,20 @@
 	background-color: #FB3318;
 }
 /* Modal */
+@media screen and (max-width: 750px){
+    .header {
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+	.header .campo{
+		width: 49.5%;
+		box-sizing: border-box;
+		margin-right: 0px;
+	}
+	.header .campo:first-child{
+		width: 100%;
+	}
+}
+@media screen and (max-width: 435px){
+
+}
