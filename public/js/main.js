@@ -8,15 +8,18 @@ function showToast(text){
 }
 /* Navegação */
 $(document).ready(function (){
-	$('#btn-mobile, #mobile-close').click(function (){
-		var cortina = $('#nav-cortina');
-		if(cortina.css('display') == 'block')
+	$('#btn-mobile').click(function (){
+		if($('#nav-cortina').css('display') == 'none')
 		{
-			cortina.fadeOut();
+			console.log('Teste open');
+			$('#nav-cortina').fadeIn();
 		}
-		else
+	});
+	$('#mobile-close').click(function (){
+		if($('#nav-cortina').css('display') == 'block')
 		{
-			cortina.fadeIn();
+			console.log('Teste close');
+			$('#nav-cortina').fadeOut();
 		}
 	});
 });
