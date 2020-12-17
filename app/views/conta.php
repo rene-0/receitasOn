@@ -23,6 +23,7 @@
 						<p><?php echo $ret->nascimento;?></p>
 					</div>
 					<div class='acoes'>
+						<i class="fas fa-sign-out-alt"></i>
 						<a href='<?php echo App\Core\Router::getBaseUrl(); ?>logout'>Logout</a>
 					</div>
 				</div>
@@ -32,7 +33,7 @@
 				<div class='container'>
 					<div class='header'>
 						<div class='item imagem'>Imagem</div>
-						<div class='item nome'>Nome da receita</div>
+						<div class='item nome'>Nome</div>
 						<div class='item status'>Status</div>
 						<div class='item data'>Data de criação</div>
 						<div class='item acao'>Ações</div>
@@ -54,18 +55,22 @@
 											if($dados->status === "ANÁLIZE")
 											{
 												echo "<div class='analize'>{$dados->status}</div>";
+												echo "<i class='fas fa-search analize'></i>";
 											}
 											elseif($dados->status === "ACEITO")
 											{
 												echo "<div class='aceito'>{$dados->status}</div>";
+												echo "<i class='fas fa-check aceito'></i>";
 											}
 											elseif($dados->status === "RECUSADO")
 											{
 												echo "<div class='recusado'>{$dados->status}</div>";
+												echo "<i class='fas fa-times recusado'></i>";
 											}
 											elseif($dados->status === "REMOVIDO")
 											{
 												echo "<div class='removido'>{$dados->status}</div>";
+												echo "<i class='fas fa-trash removido'></i>";
 											}
 										echo "</div>";
 										echo "<div class='item data'>";

@@ -3,7 +3,7 @@
 	align-items: center;
 	padding: 15px;
 	flex-direction: column;
-	min-height: calc(100% - 110px);
+	min-height: calc(100% - 100px);
 }
 .conta, .envios{
 	display: flex;
@@ -56,7 +56,7 @@
 	margin-left: auto;
 	margin-right: 0px;
 }
-.conta .acoes a{
+.conta .acoes a, .conta .acoes .fa-sign-out-alt{
 	display: block;
     padding: 5px 10px;
     border: 2px solid #e81221;
@@ -64,6 +64,9 @@
     text-decoration: none;
     color: #e81221;
     font-weight: bold;
+}
+.conta .acoes .fa-sign-out-alt{
+	display: none;
 }
 .conta .acoes a:hover{
 	color: #e81221c7;
@@ -139,6 +142,18 @@
 }
 .item.status .removido{
 	background-color: #161616;
+}
+.item.status .aceito.fas.fa-check{
+	display: none;
+}
+.item.status .analize.fas.fa-search{
+	display: none;
+}
+.item.status .removido.fas.fa-trash{
+	display: none;
+}
+.item.status .recusado.fas.fa-times{
+	display: none;
 }
 /* Status das receita */
 /* Ações */
@@ -297,3 +312,74 @@
 	background-color: #FB3318;
 }
 /* Modal */
+@media screen and (max-width: 800px){
+    .wrapper{
+		padding: 10px 0px;
+	}
+	.item.imagem {
+		display: none;
+	}
+	.item.acao {
+		width: 20%;
+	}
+	.corpo .nome h2 {
+		font-size: initial;
+	}
+	.corpo .data p {
+		font-size: initial;
+	}
+}
+@media screen and (max-width: 560px){
+	.container {
+		padding: 5px 0px;
+	}
+	.container .header {
+		border-radius: 0px;
+	}
+}
+@media screen and (max-width: 435px){
+	.corpo .nome h2 {
+		word-break: break-all;
+	}
+	.item.data {
+		display: none;
+	}
+	.item.acao {
+		width: 40%;
+	}
+	.conta .acoes a{
+		display: none;
+	}
+	.conta .acoes .fa-sign-out-alt{
+		display: block;
+	}
+	.descricao h5 {
+		word-break: break-all;
+	}
+	/* Icones */
+	.item.status .aceito {
+		display: none;
+	}
+	.item.status .aceito.fas.fa-check{
+		display: block;
+	}
+	.item.status .analize {
+		display: none;
+	}
+	.item.status .analize.fas.fa-search{
+		display: block;
+	}
+	.item.status .removido {
+		display: none;
+	}
+	.item.status .removido.fas.fa-trash{
+		display: block;
+	}
+	.item.status .recusado {
+		display: none;
+	}
+	.item.status .recusado.fas.fa-times{
+		display: block;
+	}
+	/* Icones */
+}
