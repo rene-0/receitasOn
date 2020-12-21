@@ -5,3 +5,4 @@
 <link rel='stylesheet' href='<?php echo App\Core\Router::getBaseUrl(); ?>css/sysadm/nav.css'>
 <link rel='stylesheet' href='<?php echo App\Core\Router::getBaseUrl(); ?>css/sysadm/footer.css'>
 <script type="text/javascript" src="<?php echo App\Core\Router::getBaseUrl(); ?>vendor/jQuery/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo App\Core\Router::getBaseUrl(); ?>js/sysadm/main.js"></script>

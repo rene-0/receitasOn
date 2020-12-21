@@ -37,6 +37,7 @@
 	font-weight: 600;
 	margin-bottom: 5px;
 	flex-wrap: wrap;
+	flex-wrap: wrap;
 }
 .search > div{
 	display: flex;
@@ -86,9 +87,10 @@
 	box-sizing: border-box;
 }
 .receitas .body .item{
-	height: 40px;
+	/*height: 40px;*/
     display: flex;
-    align-items: center;
+	align-items: center;
+	padding: 5px 0px;
 }
 .receitas .body .item.numero{
 	padding-left: 10px;
@@ -105,10 +107,12 @@
 .receitas .item.criador .adm{
 	color: #A11111;
 	text-decoration: none;
+	word-break: break-all;
 }
 .receitas .item.criador .usuario{
 	color: #1878b9;
 	text-decoration: none;
+	word-break: break-all;
 }
 .receitas .item.titulo{
 	width: 40%;
@@ -285,7 +289,21 @@
 	}
 }
 @media screen and (max-width: 560px){
-    
+    .wrapper{
+		margin: 10px 0px 0px 0px;
+	}
+	.receitas .item.numero {
+		display: none;
+	}
+	.receitas .body .item {
+		flex-direction: column;
+	}
+	.receitas .body .item.acoes {
+		padding-right: 0px; 
+	}
+	.header {
+		padding: 0px 0px;
+	}
 }
 @media screen and (max-width: 450px){
 	.search {

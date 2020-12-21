@@ -61,18 +61,22 @@
 									if($dados->status === "ANÁLIZE")
 									{
 										echo "<div class='analize'>{$dados->status}</div>";
+										echo "<i class='fas fa-search analize'></i>";
 									}
 									elseif($dados->status === "ACEITO")
 									{
 										echo "<div class='aceito'>{$dados->status}</div>";
+										echo "<i class='fas fa-check aceito'></i>";
 									}
 									elseif($dados->status === "RECUSADO")
 									{
 										echo "<div class='recusado'>{$dados->status}</div>";
+										echo "<i class='fas fa-times recusado'></i>";
 									}
 									elseif($dados->status === "REMOVIDO")
 									{
 										echo "<div class='removido'>{$dados->status}</div>";
+										echo "<i class='fas fa-trash removido'></i>";
 									}
 								echo "</div>";
 								echo "<div class='item data'>{$dados->data_criacao}</div>";

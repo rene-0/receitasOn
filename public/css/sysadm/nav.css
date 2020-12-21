@@ -21,6 +21,7 @@ nav .nav-container{
 	left: 0;
 	background-color: var(--nav-primaria);
 	width: 80px;
+	/*display: none;*/
 }
 nav .nav-container ul{
 	margin: 0px;
@@ -31,9 +32,6 @@ nav .nav-container ul{
 }
 nav .nav-container ul a{
 	color: white;
-}
-nav .nav-container ul li:first-child:hover{
-	/*background-color: #353535;*/
 }
 nav .nav-container ul li:first-child{
 	border-top: none;
@@ -66,4 +64,81 @@ nav .nav-container ul li:last-child{
 }
 nav .nav-container ul li a:hover{
 	background-color: #444444;
+}
+
+/* Mobile */
+.open-mobile-nav-button {
+    background-color: #2c2c2c;
+    border: none;
+    color: white;
+    height: 52px;
+    width: 52px;
+    position: fixed;
+    top: 0;
+	left: 0;
+	font-size: 25px;
+	cursor: pointer;
+	display: none;
+	z-index: 98;
+    border-radius: 3px;
+}
+.open-mobile-nav-button:hover{
+    background-color: #474747;
+}
+.mobile-cortina{
+	display: none;
+    background-color: #16161633;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 98;
+}
+.close-mobile-nav-button{
+	position: fixed;
+    top: 5;
+	right: 5;
+	color: white;
+	background-color: transparent;
+	border: none;
+	font-size: 25px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.mobile-nav-button:hover{
+	background-color: #c3c3c340;
+}
+.mobile{
+	width: unset !important;
+}
+.mobile.nav-container ul li i {
+    height: 30px;
+	padding: 0px 10px;
+}
+.mobile.nav-container ul li a {
+    flex-direction: row;
+    justify-content: space-between;
+}
+.mobile.nav-container ul li small {
+    font-size: 14px;
+    padding-right: 10px;
+}
+.mobile ul li:first-child a{
+	justify-content: center;
+}
+/* Mobile */
+@media screen and (max-width: 560px){
+	nav .nav-container {
+		display: none; 
+	}
+	nav .mobile.nav-container {
+		display: block; 
+	}
+	.open-mobile-nav-button {
+		display: block;
+	}
+	.open-mobile-nav-button {
+		display: block;
+	}
 }

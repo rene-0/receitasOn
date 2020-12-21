@@ -230,6 +230,9 @@
     justify-content: center;
     align-items: center;
 }
+.ql-container.ql-snow {
+	min-height: 100px;
+}
 /* Modal */
 .modal-container{
 	position: fixed;
@@ -312,6 +315,6 @@
 }
 @media screen and (max-width: 560px){
 	.wrapper{
-		margin: 5px 0px 0px 80px;
+		margin: 5px 0px 0px 5px;
 	}
 }

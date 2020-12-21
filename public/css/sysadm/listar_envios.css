@@ -35,7 +35,8 @@
 	justify-content: space-between;
 	background-color: var(--secundaria);
 	font-weight: 600;
-    margin-bottom: 5px;
+	margin-bottom: 5px;
+	flex-wrap: wrap;
 }
 .search > div{
 	display: flex;
@@ -85,21 +86,28 @@
 	box-sizing: border-box;
 }
 .receitas .body .item{
-	height: 40px;
+	/*height: 40px;*/
     display: flex;
-    align-items: center;
+	align-items: center;
+	padding: 5px 0px;
 }
 .receitas .body .item.numero{
-	padding-left: 10px;
+	padding-left: 5px;
 }
 .receitas .body .item.acoes{
-	padding-right: 10px;
+	padding-right: 5px;
 }
 .receitas .item.numero{
-	width: 10%;
+	width: 5%;
 }
 .receitas .item.criador{
 	width: 30%;
+}
+.receitas .item.titulo{
+	width: 25%;
+}
+.receitas .item.status{
+	width: 15%;
 }
 .receitas .item.criador .adm{
 	color: #A11111;
@@ -109,18 +117,13 @@
 	color: #1878b9;
 	text-decoration: none;
 }
-.receitas .item.titulo{
-	width: 30%;
-}
-.receitas .item.status{
-	width: 10%;
-}
 .receitas .item.status .analize, .receitas .item.status .aceito, .receitas .item.status .recusado, .receitas .item.status .removido{
 	color: white;
 	padding: 5px;
 	border-radius: 3px;
 	width: 100%;
-    text-align: center;
+	text-align: center;
+	box-sizing: border-box;
 }
 .receitas .item.status .analize{
 	background-color: #FFBF00;
@@ -135,7 +138,7 @@
 	background-color: #161616;
 }
 .receitas .item.data{
-	width: 10%;
+	width: 20%;
 }
 .receitas .item.acoes{
 	width: 10%;
@@ -211,6 +214,20 @@
 	background-color: #2d2d2d;
 	transform: scale(1.1);
 }
+	/* Icones */
+	.item.status .aceito.fas.fa-check{
+		display: none;
+	}
+	.item.status .analize.fas.fa-search{
+		display: none;
+	}
+	.item.status .removido.fas.fa-trash{
+		display: none;
+	}
+	.item.status .recusado.fas.fa-times{
+		display: none;
+	}
+	/* Icones */
 /* Receitas */
 /* Pages */
 .pages{
@@ -301,3 +318,72 @@
 	background-color: #FB3318;
 }
 /* Modal */
+@media screen and (max-width: 735px){
+    .wrapper{
+		margin: 10px 0px 0px 80px;
+	}
+	.header {
+		border-radius: 0px;
+	}
+	.receitas .item.data {
+		display: none;
+	}
+	.receitas .item.acoes {
+		width: 20%;
+	}
+	.receitas .body .item.acoes {
+		padding: 5px;
+	}
+}
+@media screen and (max-width: 560px){
+    .wrapper{
+		margin: 10px 0px 0px 0px;
+	}
+	.receitas .item.numero {
+		display: none;
+	}
+	.receitas .body .item {
+		flex-direction: column;
+	}
+	.receitas .body .item.acoes {
+		padding-right: 0px; 
+	}
+	.header {
+		padding: 0px 0px;
+	}
+	.receitas .item.status {
+		width: 25%;
+	}
+}
+@media screen and (max-width: 450px){
+	.search {
+		justify-content: center;
+	}
+	.search > div {
+		width: 100%;
+	}
+	.item.status .aceito {
+		display: none;
+	}
+	.item.status .aceito.fas.fa-check{
+		display: block;
+	}
+	.item.status .analize {
+		display: none;
+	}
+	.item.status .analize.fas.fa-search{
+		display: block;
+	}
+	.item.status .removido {
+		display: none;
+	}
+	.item.status .removido.fas.fa-trash{
+		display: block;
+	}
+	.item.status .recusado {
+		display: none;
+	}
+	.item.status .recusado.fas.fa-times{
+		display: block;
+	}
+}
