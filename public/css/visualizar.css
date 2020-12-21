@@ -1,3 +1,12 @@
 :root{
     --primaria: #161616;
 }
+.btn-mobile {
+    background-color: #ffbf00;
+}
+.nav-mobile {
+    background-color:  #ffbf00;
+}
+.nav-mobile li button {
+    background-color: #ffbf00;
+}
