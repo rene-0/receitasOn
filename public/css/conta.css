@@ -56,7 +56,7 @@
 	margin-left: auto;
 	margin-right: 0px;
 }
-.conta .acoes a, .conta .acoes .fa-sign-out-alt{
+.conta .acoes a, .conta .acoes .mobile-log{
 	display: block;
     padding: 5px 10px;
     border: 2px solid #e81221;
@@ -65,7 +65,7 @@
     color: #e81221;
     font-weight: bold;
 }
-.conta .acoes .fa-sign-out-alt{
+.conta .acoes .mobile-log{
 	display: none;
 }
 .conta .acoes a:hover{
@@ -350,7 +350,7 @@
 	.conta .acoes a{
 		display: none;
 	}
-	.conta .acoes .fa-sign-out-alt{
+	.conta .acoes .mobile-log{
 		display: block;
 	}
 	.descricao h5 {

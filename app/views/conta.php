@@ -23,7 +23,7 @@
 						<p><?php echo $ret->nascimento;?></p>
 					</div>
 					<div class='acoes'>
-						<i class="fas fa-sign-out-alt"></i>
+						<a class='mobile-log' href='<?php echo App\Core\Router::getBaseUrl(); ?>logout'><i class="fas fa-sign-out-alt"></i></a>
 						<a href='<?php echo App\Core\Router::getBaseUrl(); ?>logout'>Logout</a>
 					</div>
 				</div>
