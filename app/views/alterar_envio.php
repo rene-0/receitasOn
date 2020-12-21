@@ -107,8 +107,8 @@
 						{
 					?>
 					<div class='aviso'>
-						Alterar uma receita com status de 'ACEITO' não altera a receita ativa!<br>
-						Não é possível adicionar fotos a receitas com o status de 'ACEITO'.
+						Alterar um envio com status de 'ACEITO' não altera a receita ativa!<br>
+						Não é possível adicionar fotos ao envio com o status de 'ACEITO'.
 					</div>
 					<?php
 						 }
