@@ -20,6 +20,11 @@ body{
 	box-shadow: var(--shadow-secundaria);
 	border-radius: 3px;
 }
+@media screen and (max-width: 560px){
+	.wrapper{
+		margin: 5px 0px 0px 0px;
+	}
+}
 /* TOAST */
 #toast{
   position:fixed;
