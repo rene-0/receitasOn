@@ -83,5 +83,16 @@
 			$ret = $stm->fetch(PDO::FETCH_OBJ);
 			return $ret;
 		}
+
+		function buscarTodosUsuarios()
+		{
+			$sql = "SELECT *, DATE_FORMAT(nascimento,'%d/%m/%Y') 'nascimento' FROM usuarios";
+			
+			$this->getConec();
+			$stm = Conexao::$conec->prepare($sql);
+			$stm->execute();
+			$ret = $stm->fetchAll(PDO::FETCH_OBJ);
+			return $ret;
+		}
 	}
 ?>

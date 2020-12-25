@@ -1181,5 +1181,20 @@
 			$ret = $stm->fetch(PDO::FETCH_OBJ);
 			return $ret;
 		}
+
+		function buscarUltimoEnvio()
+		{
+			//$sql = "SELECT * FROM u_receitas ORDER BY id_receita DESC LIMIT 1";
+			$sql = "SELECT r.id_receita, titulo, temp_preparo, rendimento, adicionais, status, DATE_FORMAT(data_criacao,'%d/%m/%Y') 'data_criacao', DATE_FORMAT(data_modificacao,'%d/%m/%Y') 'data_modificacao', r.ativo,(20*IFNULL((SELECT AVG(star) FROM stars WHERE id_receita = r.id_receita),0)) 'estrelas', u.nome, r.id_usuario, uf.caminho, uf.capa
+			FROM u_receitas r 
+			INNER JOIN usuarios u ON(r.id_usuario = u.id_usuario)
+			INNER JOIN u_fotos uf ON(uf.id_receita = r.id_receita)
+			ORDER BY id_receita DESC LIMIT 1";
+			$this->getConec();
+			$stm = Conexao::$conec->prepare($sql);
+			$stm->execute();
+			$ret = $stm->fetch(PDO::FETCH_OBJ);
+			return $ret;
+		}
 	}
 ?>

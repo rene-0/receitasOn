@@ -79,7 +79,7 @@ nav .nav-container ul li a:hover{
 	font-size: 25px;
 	cursor: pointer;
 	display: none;
-	z-index: 98;
+	z-index: 50;
     border-radius: 3px;
 }
 .open-mobile-nav-button:hover{

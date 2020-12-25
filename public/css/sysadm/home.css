@@ -1,0 +1,273 @@
+.wrapper {
+    box-shadow: none;
+    padding: 0px;
+    background-color: transparent;
+}
+.bem-vindo, .ultima-receita, .ultimos-usuarios{
+    box-shadow: var(--shadow-secundaria);
+    border-radius: 3px;
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+h1{
+    margin: 0px;
+}
+.ultima-receita{
+    padding: 0px;
+    transition: height ease-in-out;
+}
+h2{
+    margin: 0px;
+    padding: 10px;
+    background-color: var(--nav-primaria);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+iframe{
+    width: 100%;
+    border: 0px;
+    min-height: 700px;
+}
+.ultimos-usuarios{
+    padding: 0px;
+}
+/* Itens */
+.ultimos-usuarios .item{
+    width: 20%;
+    padding: 10px 0px;
+    word-break: break-all;
+}
+.ultimos-usuarios .item:first-child{
+    padding-left: 10px;
+}
+.ultimos-usuarios .item:last-child{
+    padding-right: 10px;
+}
+.iten.email{
+    word-break: break-all;
+}
+/* Itens */
+.ultimos-usuarios .header{
+    background-color: var(--nav-primaria);
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    font-weight: 800;
+    font-size: 19px;
+}
+.ultimos-usuarios .body .usuario{
+    display: flex;
+    justify-content: space-between;
+}
+.ultimos-usuarios .body .usuario:hover{
+    background-color: #EFEFEF;
+}
+@media screen and (max-width: 700px){
+	.item.criado{
+        display: none;
+    }
+    .item.nome{
+        width: 30%;
+    }
+    .item.email{
+        width: 30%;
+    }
+}
+@media screen and (max-width: 470px){
+	.ultimos-usuarios .header {
+        font-size: 17px;
+    }
+}
+/* Receita */
+main{
+    background-color: white;
+	border-radius: 5px;
+	box-shadow: 4px 4px 7px #00000012;
+	box-sizing: border-box;
+}
+.stars{
+  display: block;
+  font-size: 25px;
+  position: relative;
+  overflow: hidden;
+  color: var(--secundaria);
+}
+
+.main-header .stars-container{
+  display: inline-block;
+  position: relative;
+  height: 37px;
+}
+
+.stars .ativos{
+  position: relative;
+  z-index: 10;/* Faz com que fique por cima das inativas */
+  display: inline-block;
+  overflow: hidden;/* junto com width faz com que seja cortado dando o efeito de estrelas prenchidas em porcentagens quebradas */
+  white-space: nowrap;
+}
+
+.stars .inativos{
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-text-stroke: initial;
+}
+main .main-header{
+	display: flex;
+	background-color: var(--primaria);
+	color: white;
+	padding: 5px 25px;
+	border-radius: 3px 3px 0px 0px;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+	flex-wrap: wrap;
+}
+main .main-header .stars{
+	font-size: 30px;
+	color: white;
+	cursor: pointer;
+}
+main .main-header h1{
+	margin: 0px;
+}
+main .container{
+	padding: 10px 35px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+.carousel{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #c0c0c033;
+	/* border-radius: 3px; */
+	border-radius: 3px 3px 0px 0px;
+	padding: 5px 0px;
+	margin-bottom: 10px;
+}
+.carousel .item{
+	outline: none;
+	cursor: grab;
+}
+main .principal{
+	display: flex;
+	justify-content: space-evenly;
+	width: 100%;
+	margin-bottom: 5px;
+	flex-wrap: wrap;
+}
+main .principal .item{
+	padding: 10px 0px;
+    box-sizing: border-box;
+	display: flex;
+	align-items: center;
+}
+main .principal .item i{
+	padding-right: 15px;
+    font-size: 47px;
+    color: var(--primaria);
+}
+main .principal .item img{
+	width: 65px;
+	height: 65px;
+	margin-right: 15px;
+	border-radius: 50%;
+}
+main .principal .item mark{
+	color: #A11111;
+    background-color: transparent;
+	text-align: center;
+    display: block;
+}
+main .principal .item mark.blue{
+	color: #1878b9;
+}
+main .principal .item p{
+	margin: 0px;
+	color: #7b7b7b;
+    font-weight: 400;
+	margin-bottom: 5px;
+	font-size: 22px;
+    text-align: center;
+}
+    /* Campo padrão */
+    .re-campo{
+        width: 100%;
+        background-color: white;
+        margin-bottom: 10px;
+    }
+    .re-header{
+        background-color: var(--primaria);
+        padding: 10px 25px;
+        color: white;
+        border-radius: 3px 3px 0px 0px;
+    }
+    .re-header h3{
+        margin: 0px;
+        font-size: 22px;
+        font-weight: 600;
+    }
+    .re-list li{
+        margin: 10px 0px;
+        font-size: 18px;
+        font-weight: 300;
+    }
+    /* Campo padrão */
+    /* Ingredientes */
+    .ingredientes{
+        background-color: var(--primaria);
+        color: white;
+        padding: 5px 0px;
+        border-radius: 3px 3px 0px 0px;
+    }
+    /* Ingredientes */
+    /* Preparo */
+    .preparo{
+        color: black;
+        padding: 0px;
+    }
+    .preparo ul{
+        list-style-type: decimal;
+    }
+    /* Preparo */
+    /* Adicionais */
+    .adicional .corpo{
+        padding-left: 40px;
+        font-size: 20px;
+        font-weight: 300;
+    }
+    /* Adicionais */
+    .container img{
+        width: 100%;
+    }
+@media screen and (max-width: 560px){
+    main .container {
+        padding: 10px;
+    }
+}
+/* Receita */
+/* FullScreen */
+.fas.fa-expand, .fas.fa-compress{
+    cursor: pointer;
+}
+.fas.fa-compress{
+    display: none;
+}
+.full-screen{
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+/* FullScreen */
