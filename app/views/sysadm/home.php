@@ -112,6 +112,9 @@
 						</div>
 					</main>
 				</div>
+				<div class='drop-receita'>
+					<i class="fas fa-angle-double-down"></i>
+				</div>
 			</div>
 			<div class='ultimos-usuarios'>
 				<h2>Últimos usuários</h2>
@@ -139,5 +142,6 @@
 				</div>
 			</div>
 		</main>
+		<div id='toast'></div>
 	</body>
 </html>
