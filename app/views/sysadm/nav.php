@@ -30,6 +30,12 @@
 				</a>
 			</li>
 			<li>
+				<a title='Listar Envios' href='<?php echo App\Core\Router::getBaseUrl(); ?>sysadm/configuracoes'>
+					<i class="fas fa-cog"></i>
+					<small>Configurações</small>
+				</a>
+			</li>
+			<li>
 				<a title='Logout' href='<?php echo App\Core\Router::getBaseUrl(); ?>sysadm/logout'>
 					<i class="fas fa-sign-out-alt"></i>
 					<small>Logout</small>
@@ -68,6 +74,12 @@
 					<a title='Listar Envios' href='<?php echo App\Core\Router::getBaseUrl(); ?>sysadm/listar_envios'>
 						<i class="fas fa-th-list"></i>
 						<small>Listar envios</small>
+					</a>
+				</li>
+				<li>
+					<a title='Listar Envios' href='<?php echo App\Core\Router::getBaseUrl(); ?>sysadm/configuracoes'>
+						<i class="fas fa-cog"></i>
+						<small>Configurações</small>
 					</a>
 				</li>
 				<li>

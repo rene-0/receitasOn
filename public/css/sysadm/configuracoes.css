@@ -1,0 +1,70 @@
+.wrapper{
+    box-shadow: unset;
+    background-color: unset;
+    padding: 0px;
+}
+h1,h2,h3,p{
+    margin: 0px;
+}
+.campo{
+    background-color: white;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    padding: 15px;
+    box-shadow: var(--shadow-secundaria);
+}
+.campo h3{
+    margin-bottom: 5px;
+}
+.back{
+    padding: 5px;
+    background-color: #eeeeee;
+}
+.item{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+.item:hover{
+    background-color: #4e4e4e;
+    color: white;
+}
+.item .far.fa-file{
+    margin-right: 10px;
+}
+.buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.buttons .fa-plus{
+    border: none;
+    background-color: #18A0FB;
+    padding: 10px;
+    border-radius: 3px;
+    width: 50px;
+    align-self: center;
+    color: white;
+    cursor: pointer;
+    box-shadow: 2px 2px 7px #00000025;
+    text-align: center;
+}
+.buttons .fa-plus:hover{
+    background-color: #1890e0;
+}
+.buttons .fa-file-archive{
+    border: none;
+    background-color: #FB3318;
+    padding: 10px;
+    border-radius: 3px;
+    width: 50px;
+    align-self: center;
+    color: white;
+    cursor: pointer;
+    box-shadow: 2px 2px 7px #00000025;
+    text-align: center;
+}
+.buttons .fa-file-archive:hover{
+    background-color: #e42e16;
+}
