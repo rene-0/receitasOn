@@ -9,7 +9,7 @@ receitasOn é um site comum de receitas criado para fazer parte do meu portfóli
 - [x] Cadastro de receitas
 - [x] Alteração de status da receita
 - [ ] Responsividade
-- [ ] Backup do banco de dados
+- [x] Backup do banco de dados
 - [ ] Revisão e correção de bugs
 ### Frameworks e Bibliotecas
 - [jQuery](https://jquery.com/)
