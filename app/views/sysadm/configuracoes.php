@@ -17,14 +17,28 @@
                     <?php
                         foreach($folders as $dados)
                         {
-                            echo "<div class='item'>";
-                                echo "<div class='icon'>";
-                                    echo "<i class='far fa-file'></i>";
+                            if(substr($dados,-4) === '.sql')
+				            {
+                                echo "<div class='item sql'>";
+                                    echo "<div class='icon'>";
+                                        echo "<i class='far fa-file'></i>";
+                                    echo "</div>";
+                                    echo "<div class='nome'>";
+                                        echo "<p>{$dados}</p>";
+                                    echo "</div>";
                                 echo "</div>";
-                                echo "<div class='nome'>";
-                                    echo "<p>{$dados}</p>";
+                            }
+                            else
+                            {
+                                echo "<div class='item zip'>";
+                                    echo "<div class='icon'>";
+                                    echo "<i class='far fa-file-archive'></i>";
+                                    echo "</div>";
+                                    echo "<div class='nome'>";
+                                        echo "<p>{$dados}</p>";
+                                    echo "</div>";
                                 echo "</div>";
-                            echo "</div>";
+                            }
                         }
                     ?>
                 </div>

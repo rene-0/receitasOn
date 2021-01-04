@@ -1,6 +1,7 @@
 <?php
     namespace App\Models;
-    use PDO;//Importante
+	use PDO;//Importante
+	use ZipArchive;
     class Backup extends Conexao
     {
         private $tabelas;
@@ -30,7 +31,7 @@
             }
             else
             {
-                throw \Exception('Tabelas deve ser um array!');
+                throw new \Exception('Tabelas deve ser um array!');
             }
         }
 
@@ -42,7 +43,7 @@
             }
             else
             {
-                throw \Exception('Arquivo deve ser uma string não vazia');
+                throw new \Exception('Arquivo deve ser uma string não vazia');
             }
         }
         
@@ -122,6 +123,63 @@
 			fwrite($file,$conteudo); 
             fclose($file);
             return $conteudo;
-        }
+		}
+		
+		function zip()
+		{
+			try
+			{
+				$files = array_diff(scandir($this->arquivo), array('..', '.'));
+				foreach($files as $key => $dados)
+				{
+					if(substr($dados,-4) !== '.sql')
+					{
+						unset($files[$key]);
+					}
+				}
+				$files = array_values($files);
+				$zip = new ZipArchive;
+				$res = $zip->open($this->arquivo . 'backup-'. date('d-m-Y--H-i-s') .'.zip', ZipArchive::CREATE);
+				if($res === TRUE)//Se funcionou $res deve conter TRUE
+				{
+					$ret = true;
+					foreach($files as $file)
+					{
+						if($ret)
+						{
+							$ret = $zip->addFile($this->arquivo . $file,$file);
+						}
+						else
+						{
+							return false;
+							break;
+						}
+					}
+
+					$ret = $zip->close();
+
+					if($ret)
+					{
+						foreach($files as $file)
+						{
+							unlink($this->arquivo . $file);	
+						}
+					}
+					else
+					{
+						return false;
+					}
+					return 'backup-'.date('d-m-Y--H-i-s').'.zip';
+				} 
+				else
+				{
+					return false;
+				}
+			}
+			catch(\Exception $e)
+			{
+				echo $e->getMessage();
+			}
+		}
     }
 ?>
