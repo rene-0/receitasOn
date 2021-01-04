@@ -181,7 +181,7 @@
 							else
 							{
 								echo "<ul>";
-									echo "<div id='disabled' class='disabled'>Nenhum comentario, seja o primeiro a comentar!</div>";
+									echo "<div id='disabled' class='disabled'>Nenhum comentário, seja o primeiro a comentar!</div>";
 								echo "</ul>";
 							}
 						?>

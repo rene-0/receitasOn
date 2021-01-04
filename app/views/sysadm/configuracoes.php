@@ -14,21 +14,26 @@
             <div class='campo'>
                 <h3>Backup</h3>
                 <div class='back'>
-                    <div class='item'>
-                        <div class='icon'>
-                            <i class="far fa-file"></i>
-                        </div>
-                        <div class='nome'>
-                            <p>receitason-backup-31-13/1998.sql</p>
-                        </div>
+                    <?php
+                        foreach($folders as $dados)
+                        {
+                            echo "<div class='item'>";
+                                echo "<div class='icon'>";
+                                    echo "<i class='far fa-file'></i>";
+                                echo "</div>";
+                                echo "<div class='nome'>";
+                                    echo "<p>{$dados}</p>";
+                                echo "</div>";
+                            echo "</div>";
+                        }
+                    ?>
+                </div>
+                <div class='loader'>
+                    <div class='loading'>
+                        <img src='<?php echo App\Core\Router::getBaseUrl();?>img/main/loader.gif'> Carregando!
                     </div>
-                    <div class='item'>
-                        <div class='icon'>
-                            <i class="far fa-file"></i>
-                        </div>
-                        <div class='nome'>
-                            <p>receitason-backup-31-13/1998.sql</p>
-                        </div>
+                    <div class='loaded'>
+                        <p>Backup concluido!</p>
                     </div>
                 </div>
                 <div class='buttons'>
