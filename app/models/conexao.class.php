@@ -24,14 +24,5 @@
 				echo $e->getMessage();
 			}
 		}
-		
-		protected function killConec()
-		{
-			if(Conexao::$conec != null)
-			{
-				Conexao::$conec = null;
-				$this->stm = null;
-			}
-		}
 	}
 ?>

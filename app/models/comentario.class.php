@@ -51,15 +51,23 @@
 		
 		function setComentario($comentario)
 		{
-			$comentario = trim($comentario);
-			if(empty($comentario))
+			if(is_string($comentario))
 			{
-				throw new \Exception('Comentario não pode ser vazio');
+				$comentario = trim($comentario);
+				if(empty($comentario))
+				{
+					throw new \Exception('Comentario não pode ser vazio');
+				}
+				else
+				{
+					$comentario = $comentario;
+				}
 			}
 			else
 			{
-				$this->comentario = $comentario;
+				throw new \Exception('Comentario inválido');
 			}
+			
 		}
 		
 		function setData($data)

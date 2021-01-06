@@ -41,7 +41,8 @@
 		{
 			return $this->capa;
 		}
-		//Set'scandir
+
+		//Set's
 		function setId_foto($id_foto)
 		{
 			if(!ctype_digit((string)$id_foto))
@@ -63,7 +64,7 @@
 			}
 			elseif(strlen($nome) > 255)
 			{
-				throw new \Exception('Nome não pode ser maio que 255 caracteres');
+				throw new \Exception('Nome não pode ser maior que 255 caracteres');
 			}
 			else
 			{
@@ -80,7 +81,7 @@
 			}
 			elseif(strlen($caminho) > 255)
 			{
-				throw new \Exception('Caminho não pode ser maio que 255 caracteres');
+				throw new \Exception('Caminho não pode ser maior que 255 caracteres');
 			}
 			else
 			{

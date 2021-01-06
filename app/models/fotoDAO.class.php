@@ -63,7 +63,7 @@
 			}
 			else
 			{
-				$base_dir = dirname(dirname(dirname(__FILE__)));//C:\xampp\htdocs\receitasOn
+				$base_dir = dirname(dirname(dirname(__FILE__)));
 				$ex = explode('/',$foto->getCaminho());
 				$file = "{$base_dir}\\public\\{$ex[count($ex)-2]}\\{$ex[count($ex)-1]}";//O aquivo que vai ser deletado
 				if(file_exists($file))//Só deleta se ele existir
@@ -73,10 +73,6 @@
 						Conexao::$conec->rollBack();
 						throw new \Exeception("Erro ao deletar imagem!");
 					}
-				}
-				else
-				{
-					//Quando criar o logger - Colocar no log que o aquivo que está tentando ser deletado não existe
 				}
 				Conexao::$conec->commit();
 				return $ret;
@@ -112,17 +108,13 @@
 				$base_dir = dirname(dirname(dirname(__FILE__)));//C:\xampp\htdocs\receitasOn
 				$ex = explode('/',$foto->getCaminho());
 				$file = "{$base_dir}\\public\\{$ex[count($ex)-2]}\\{$ex[count($ex)-1]}";//O aquivo que vai ser deletado
-				if(file_exists($file))//Só deleta se ele existir
+				if(file_exists($file))
 				{
 					if(!unlink($file))
 					{
 						Conexao::$conec->rollBack();
 						throw new \Exeception("Erro ao deletar imagem!");
 					}
-				}
-				else
-				{
-					//Quando criar o logger - Colocar no log que o aquivo que está tentando ser deletado não existe
 				}
 				Conexao::$conec->commit();
 				return $ret;
