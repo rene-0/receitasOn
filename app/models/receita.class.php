@@ -120,69 +120,97 @@
 		
 		function setTitulo($titulo)
 		{
-			$titulo = trim($titulo);
-			if(empty($titulo))
+			if(is_string($titulo))
 			{
-				throw new \Exception('Titulo não pode ser vazio');
-			}
-			elseif(strlen($titulo) > 150)
-			{
-				throw new \Exception('Titulo deve ser menor ou igual a 150 caracteres');
-			}
-			elseif(strlen($titulo) < 4)
-			{
-				throw new \Exception('Titulo deve ser maior que 3 caracteres');
+				$titulo = trim($titulo);
+				if(empty($titulo))
+				{
+					throw new \Exception('Titulo não pode ser vazio');
+				}
+				elseif(strlen($titulo) > 150)
+				{
+					throw new \Exception('Titulo deve ser menor ou igual a 150 caracteres');
+				}
+				elseif(strlen($titulo) < 4)
+				{
+					throw new \Exception('Titulo deve ser maior que 3 caracteres');
+				}
+				else
+				{
+					$this->titulo = $titulo;
+				}
 			}
 			else
 			{
-				$this->titulo = $titulo;
+				throw new \Exception('Titulo inválido');
 			}
 		}
 		
 		function setTempo_preparo($tempo_preparo)
 		{
-			$tempo_preparo = trim($tempo_preparo);
-			if(empty($tempo_preparo))
+			if(is_string($tempo_preparo))
 			{
-				throw new \Exception('Tempo de preparo não pode ser vazio');
-			}
-			elseif(strlen($tempo_preparo) > 50)
-			{
-				throw new \Exception('Tempo de preparo deve ser menor ou igual a 50 caracteres');
+				$tempo_preparo = trim($tempo_preparo);
+				if(empty($tempo_preparo))
+				{
+					throw new \Exception('Tempo de preparo não pode ser vazio');
+				}
+				elseif(strlen($tempo_preparo) > 50)
+				{
+					throw new \Exception('Tempo de preparo deve ser menor ou igual a 50 caracteres');
+				}
+				else
+				{
+					$this->tempo_preparo = $tempo_preparo;
+				}
 			}
 			else
 			{
-				$this->tempo_preparo = $tempo_preparo;
+				throw new \Exception('Tempo de preparo inválido');
 			}
 		}
 		
 		function setRendimento($rendimento)
 		{
-			$rendimento = trim($rendimento);
-			if(empty($rendimento))
+			if(is_string($rendimento))
 			{
-				throw new \Exception('Rendimento não pode ser vazio');
-			}
-			elseif(strlen($rendimento) > 50)
-			{
-				throw new \Exception('Rendimento deve ser menor ou igual a 50 caracteres');
+				$rendimento = trim($rendimento);
+				if(empty($rendimento))
+				{
+					throw new \Exception('Rendimento não pode ser vazio');
+				}
+				elseif(strlen($rendimento) > 50)
+				{
+					throw new \Exception('Rendimento deve ser menor ou igual a 50 caracteres');
+				}
+				else
+				{
+					$this->rendimento = $rendimento;
+				}
 			}
 			else
 			{
-				$this->rendimento = $rendimento;
+				throw new \Exception('Rendimento inválido');
 			}
 		}
 		
 		function setAdicionais($adicionais)
 		{
-			$adicionais = trim($adicionais);
-			if(strlen($adicionais) > 15535)
+			if(is_string($adicionais))
 			{
-				throw new \Exception('Informações adicionais muito grande');
+				$adicionais = trim($adicionais);
+				if(strlen($adicionais) > 15535)
+				{
+					throw new \Exception('Informações adicionais muito grande');
+				}
+				else
+				{
+					$this->adicionais = $adicionais;
+				}
 			}
 			else
 			{
-				$this->adicionais = $adicionais;
+				throw new \Exception('Informações inválida');
 			}
 		}
 		
@@ -213,7 +241,7 @@
 
 		function setStatus($status)
 		{
-			if($status === 'ACEITO' || $status === 'RECUSADO' || $status === 'ANÁLIZE' || $status === 'REMOVIDO')
+			if($status === 'ACEITO' || $status === 'RECUSADO' || $status === 'ANÁLISE' || $status === 'REMOVIDO')
 			{
 				$this->status = $status;
 			}

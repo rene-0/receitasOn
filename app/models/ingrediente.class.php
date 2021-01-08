@@ -10,8 +10,8 @@
 		function __construct($id_ingrediente = null, $ingrediente = null, $ordem = null, $id_receita = null)
 		{
 			$this->id_ingrediente = $id_ingrediente;
-			$this->setIngrediente($ingrediente);
-			$this->setOrdem($ordem);
+			$this->ingrediente = $ingrediente;
+			$this->ordem = $ordem;
 			$this->id_receita = $id_receita;
 		}
 		
@@ -44,18 +44,25 @@
 		
 		function setIngrediente($ingrediente)
 		{
-			$ingrediente = trim($ingrediente);
-			if(empty($ingrediente))
+			if(is_string($ingrediente))
 			{
-				throw new \Exception('Ingrediente não pode ser vazio');
-			}
-			elseif(strlen($ingrediente) > 255)
-			{
-				throw new \Exception('Ingrediente não pode ser maio que 255 caracteres');
+				$ingrediente = trim($ingrediente);
+				if(empty($ingrediente))
+				{
+					throw new \Exception('Ingrediente não pode ser vazio');
+				}
+				elseif(strlen($ingrediente) > 255)
+				{
+					throw new \Exception('Ingrediente não pode ser maio que 255 caracteres');
+				}
+				else
+				{
+					$this->ingrediente = $ingrediente;
+				}
 			}
 			else
 			{
-				$this->ingrediente = $ingrediente;
+				throw new \Exception('Ingrediente inválido');
 			}
 		}
 		

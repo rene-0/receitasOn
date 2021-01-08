@@ -35,10 +35,22 @@
 					$usuario = new \App\Models\Usuario($_SESSION['adm']['id_adm']);
 					foreach($_POST['ingrediente'] as $key => $dados)
 					{
+						/*
+							$ingrediente = new \Ingrediente();
+							$ingrediente->setIngrediente($dados);
+							$ingrediente->setOrdem($key+1);
+							$receita->setIngredientes(null, $ingrediente->getIngrediente(),$ingrediente->getOrdem(),null);
+						*/
 						$receita->setIngredientes(null,$dados,$key+1,null);
 					}
 					foreach($_POST['preparo'] as $key => $dados)
 					{
+						/*
+							$preparo = new \Preparo();
+							$preparo->setPreparo($dados);
+							$preparo->setOrdem($key+1);
+							$receita->setPreparo(null,$preparo->getPreparo(),$preparo->getOrdem(),null);
+						*/
 						$receita->setPreparo(null,$dados,$key+1,null);
 					}
 					foreach($_FILES['fotos']['name'] as $key => $dados)

@@ -10,8 +10,8 @@
 		function __construct($id_preparo = null, $preparo = null, $ordem = null, $id_receita = null)
 		{
 			$this->id_preparo = $id_preparo;
-			$this->setPreparo($preparo);
-			$this->setOrdem($ordem);
+			$this->preparo = $preparo;
+			$this->ordem = $ordem;
 			$this->id_receita = $id_receita;
 		}
 		
@@ -44,18 +44,25 @@
 		
 		function setPreparo($preparo)
 		{
-			$preparo = trim($preparo);
-			if(empty($preparo))
+			if(is_string($preparo))
 			{
-				throw new \Exception('Preparo não pode ser vazio');
-			}
-			elseif(strlen($preparo) > 255)
-			{
-				throw new \Exception('Preparo não pode ser maio que 255 caracteres');
+				$preparo = trim($preparo);
+				if(empty($preparo))
+				{
+					throw new \Exception('Preparo não pode ser vazio');
+				}
+				elseif(strlen($preparo) > 255)
+				{
+					throw new \Exception('Preparo não pode ser maio que 255 caracteres');
+				}
+				else
+				{
+					$this->preparo = $preparo;
+				}
 			}
 			else
 			{
-				$this->preparo = $preparo;
+				throw new \Exception('Preparo inválido');
 			}
 		}
 		
