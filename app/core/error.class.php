@@ -6,11 +6,11 @@
 		//Função de loggar o erro
 		private function logError($exception)
 		{
-			ini_set('error_log',dirname(__DIR__) . '\logs\\' . date('d-m-Y') . '.txt');
+			ini_set('error_log',dirname(__DIR__) . '/logs/' . date('d-m-Y') . '.txt');
 			$message = "Uncaught exception: '". get_class($exception) ."'";
 			$message .= "Message: '". $exception->getMessage() ."'";
-			$message .= "\nStack trace:". $exception->getTraceAsString() ."";
-			$message .= "\nThrow in '". $exception->getFile() ."' on line ". $exception->getLine() ."\n";
+			$message .= PHP_EOL."Stack trace:". $exception->getTraceAsString() ."";
+			$message .= PHP_EOL."Throw in '". $exception->getFile() ."' on line ". $exception->getLine() .PHP_EOL;
 			error_log($message);
 		}
 		
@@ -38,14 +38,12 @@
 				if($exception->getCode() == 404)
 				{
 					http_response_code(404);
-					//echo $exception->getMessage();
 					require_once("../app/views/error404.php");
 				}
 				else
 				{
 					http_response_code(500);
-					(new self)->logError($exception);//Quando for necesáario referenciar a propria classe em uma função estatica usa-se (new self)-> em vez de $this->
-					//echo "Deu um erro";
+					(new self)->logError($exception);
 					require_once("../app/views/error.php");
 				}
 			}

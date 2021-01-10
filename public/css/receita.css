@@ -529,6 +529,9 @@ main .principal .item p{
 	align-items: center;
 	margin: 0px;
 	width: 100%;
+	/*
+	    position: relative;
+	*/
 }
 .stars-modal-container .body form input[type='range']{
 	background-color: #d3d3d3;
@@ -541,6 +544,11 @@ main .principal .item p{
 	outline: none;
 	margin: 10px 0px;
 	border-radius: 12px;
+	/*
+	position: absolute;
+    top: -40;
+    z-index: 91;
+	*/
 }
 .stars-modal-container .body form input[type='range']::-webkit-slider-thumb{
 	-webkit-appearance: none; /*Remove o botão padrão*/

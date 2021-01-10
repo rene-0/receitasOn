@@ -17,10 +17,7 @@
 		const DB_PASSWORD = '';
 		//const DB_PASSWORD = 'Receita$#';
 		
-		//Desativado mostra uma messagem de erro generica, ativado mostra o erro detalhado
-		const SHOW_ERRORS = true;
-		
-		//Local de armazenamento de erros, se os erros estiverem ativados
-		//ini_set('error_log',dirname(__DIR__) . '\logs\\' . date('d-m-Y') . '.txt');
+		//Desativado mostra uma messagem de erro generica (Produção), ativado mostra o erro detalhado (Desenvolvimento)
+		const SHOW_ERRORS = false;
 	}
 ?>
