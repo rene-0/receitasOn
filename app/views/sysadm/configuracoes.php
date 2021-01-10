@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<?php include_once('../app/views/sysadm/include_head.php'); ?>
-        <script type="text/javascript" src="<?php echo App\Core\Router::getBaseUrl(); ?>js/sysadm/configuracoes.js"></script>
-        <link rel='stylesheet' href='<?php echo App\Core\Router::getBaseUrl(); ?>css/sysadm/configuracoes.css'>
+        <script type="text/javascript" src="<?php echo App\Core\Router::getBaseUrl(); ?>js/sysadm/configuracoes.min.js"></script>
+        <link rel='stylesheet' href='<?php echo App\Core\Router::getBaseUrl(); ?>css/sysadm/configuracoes.min.css'>
 		<title>Sysadm - Configurações</title>
 	</head>
 	<body>

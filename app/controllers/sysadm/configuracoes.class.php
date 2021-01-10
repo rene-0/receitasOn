@@ -23,9 +23,7 @@
 		
 		protected function index()
 		{
-			//var_dump(dirname(dirname(__DIR__)) . '\backups');
-			//Escaneia o diretório backups, remove os pontos que vem por padrão e re-arruma os indexs do array 
-			$folders = array_diff(scandir(dirname(dirname(__DIR__)) . '\backups'), array('..', '.'));
+			$folders = array_diff(scandir(dirname(dirname(__DIR__)) . '/backups'), array('..', '.'));
 			foreach($folders as $key => $dados)
 			{
 				if(substr($dados,-4) !== '.sql' && substr($dados,-4) !== '.zip')
@@ -34,7 +32,6 @@
 				}
 			}
 			$folders = array_values($folders);
-			//var_dump($folders);
 			require_once('../app/views/sysadm/configuracoes.php');
 		}
 
@@ -43,7 +40,7 @@
 			header('Content-type: application/json');
 			try
 			{
-				$arquivo = dirname(dirname(__DIR__)) . '\backups\backup-receitason-' . date('d-m-Y-H-i-s') . ".sql";
+				$arquivo = dirname(dirname(__DIR__)) . '/backups/backup-receitason-' . date('d-m-Y-H-i-s') . ".sql";
 				$tabelas = array('adm','usuarios','u_receitas','u_preparo','u_ingredientes','u_fotos','receitas','stars','preparo','ingredientes','fotos','comentarios');
 				$backuper = new \App\Models\Backup($tabelas, $arquivo);
 				$ret = $backuper->backUp();
@@ -67,7 +64,7 @@
 		{
 			header('Content-type: application/json');
 			//Testa se existe arquivos sql
-				$folders = array_diff(scandir(dirname(dirname(__DIR__)) . '\backups'), array('..', '.'));
+				$folders = array_diff(scandir(dirname(dirname(__DIR__)) . '/backups'), array('..', '.'));
 				foreach($folders as $key => $dados)
 				{
 					if(substr($dados,-4) !== '.sql')
@@ -83,7 +80,7 @@
 			//Testa se existe arquivos sql
 			try
 			{
-				$arquivo = dirname(dirname(__DIR__)) . "\backups\\";
+				$arquivo = dirname(dirname(__DIR__)) . "/backups/";
 				$backuper = new \App\Models\Backup(array(), $arquivo);
 				$ret = $backuper->zip();
 				if($ret != false)
