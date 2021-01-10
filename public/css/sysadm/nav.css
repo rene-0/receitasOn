@@ -17,8 +17,8 @@ nav h1{
 nav .nav-container{
 	height: 100%;
 	position: fixed;
-	top: 0;
-	left: 0;
+	top: 0px;
+	left: 0px;
 	background-color: var(--nav-primaria);
 	width: 80px;
 	/*display: none;*/
@@ -74,8 +74,8 @@ nav .nav-container ul li a:hover{
     height: 52px;
     width: 52px;
     position: fixed;
-    top: 0;
-	left: 0;
+    top: 0px;
+	left: 0px;
 	font-size: 25px;
 	cursor: pointer;
 	display: none;
@@ -89,16 +89,16 @@ nav .nav-container ul li a:hover{
 	display: none;
     background-color: #16161633;
     position: fixed;
-    top: 0;
-    right: 0;
+    top: 0px;
+    right: 0px;
     height: 100%;
     width: 100%;
     z-index: 98;
 }
 .close-mobile-nav-button{
 	position: fixed;
-    top: 5;
-	right: 5;
+    top: 5px;
+	right: 5px;
 	color: white;
 	background-color: transparent;
 	border: none;

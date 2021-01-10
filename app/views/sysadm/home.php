@@ -1,19 +1,23 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<?php include_once('../app/views/sysadm/include_head.php'); ?>
-		<link rel='stylesheet' href='<?php echo App\Core\Router::getBaseUrl(); ?>css/sysadm/home.css'>
-		<script type="text/javascript" src="<?php echo App\Core\Router::getBaseUrl(); ?>js/sysadm/home.js"></script>
+		<link rel='stylesheet' href='<?php echo App\Core\Router::getBaseUrl(); ?>css/sysadm/home.min.css'>
+		<script type="text/javascript" src="<?php echo App\Core\Router::getBaseUrl(); ?>js/sysadm/home.min.js"></script>
 		<title>Sysadm - Home</title>
 	</head>
 	<body>
 		<?php include_once('../app/views/sysadm/nav.php'); ?>
 		<main class='wrapper'>
 			<div class='bem-vindo'>
-				<h1>Bem vindo de volta <?php echo $_SESSION['adm']['nome'];?></h1>
+				<h1>Bem-vindo de volta <?php echo $_SESSION['adm']['nome'];?></h1>
 			</div>
+			<?php
+				if(!empty($ret))
+				{
+			?>
 			<div class='ultima-receita'>
 				<h2>Esta é a última receita enviada <div id='full-toggle'><i class='fas fa-expand'></i><i class='fas fa-compress'></i></div></h2>
-				<!--<iframe src='<?php echo App\Core\Router::getBaseUrl()."visualizar/index/{$ret->id_receita}"; ?>'></iframe>-->
 				<div class='receita-container'>
 					<main class='receita'>
 						<div class='main-header'>
@@ -116,6 +120,9 @@
 					<i class="fas fa-angle-double-down"></i>
 				</div>
 			</div>
+			<?php
+				}
+			?>
 			<div class='ultimos-usuarios'>
 				<h2>Últimos usuários</h2>
 				<?php //var_dump($usuario)?>

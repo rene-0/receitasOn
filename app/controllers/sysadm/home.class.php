@@ -38,10 +38,6 @@
 					$fotoDAO = new \App\Models\FotoDAO();
 					$fotos = $fotoDAO->buscarPorEnvio($receita);
 				}
-				else
-				{
-					throw new \Exception("Erro 404, não encontrado",404);
-				}
 			//Receita
 			$usuarioDAO = new \App\Models\UsuarioDAO();
 			$usuario = $usuarioDAO->buscarTodosUsuarios();
