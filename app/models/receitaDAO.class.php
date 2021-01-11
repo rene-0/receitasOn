@@ -305,7 +305,6 @@
 					{
 						Conexao::$conec->rollBack();
 						throw new \Exception("Erro ao inserir ingrediente");
-						break;
 						return false;//Se falhar
 					}
 				}
@@ -321,7 +320,6 @@
 					{
 						Conexao::$conec->rollBack();
 						throw new \Exception("Erro ao inserir preparo");
-						break;
 						return false;//Se falhar
 					}
 				}
@@ -346,7 +344,6 @@
 					{
 						Conexao::$conec->rollBack();
 						throw new \Exception("Erro ao inserir foto");
-						break;
 						return false;//Se falhar
 					}
 				}

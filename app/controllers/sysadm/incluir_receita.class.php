@@ -11,15 +11,11 @@
 		
 		protected function before()
 		{
-			//echo "Antes";
-			//Teste de login
-			parent::before();
+			parent::before();//Teste de login
 		}
 		
 		protected function after()
-		{
-			//echo "Depois";
-		}
+		{ }
 		
 		protected function index()
 		{
@@ -35,40 +31,32 @@
 					$usuario = new \App\Models\Usuario($_SESSION['adm']['id_adm']);
 					foreach($_POST['ingrediente'] as $key => $dados)
 					{
-						/*
-							$ingrediente = new \Ingrediente();
-							$ingrediente->setIngrediente($dados);
-							$ingrediente->setOrdem($key+1);
-							$receita->setIngredientes(null, $ingrediente->getIngrediente(),$ingrediente->getOrdem(),null);
-						*/
-						$receita->setIngredientes(null,$dados,$key+1,null);
+						$ingrediente = new \App\Models\Ingrediente();
+						$ingrediente->setIngrediente($dados);
+						$ingrediente->setOrdem($key+1);
+						$receita->setIngredientes(null, $ingrediente->getIngrediente(),$ingrediente->getOrdem(),null);
 					}
 					foreach($_POST['preparo'] as $key => $dados)
 					{
-						/*
-							$preparo = new \Preparo();
-							$preparo->setPreparo($dados);
-							$preparo->setOrdem($key+1);
-							$receita->setPreparo(null,$preparo->getPreparo(),$preparo->getOrdem(),null);
-						*/
-						$receita->setPreparo(null,$dados,$key+1,null);
+						$preparo = new \App\Models\Preparo();
+						$preparo->setPreparo($dados);
+						$preparo->setOrdem($key+1);
+						$receita->setPreparo(null,$preparo->getPreparo(),$preparo->getOrdem(),null);
 					}
 					foreach($_FILES['fotos']['name'] as $key => $dados)
 					{
 						if(!empty($_FILES['fotos']['name'][$key]))
 						{
-							if(!@getimagesize($_FILES['fotos']['tmp_name'][$key]))//Se a imagem for inválida, exemplo um aquivo de texto texto.txt renomeado texto.png| O @ na frente da função é para suprimir o erro criado pelo próprio php e deixar o script mesmo cudar do erro
+							if(!@getimagesize($_FILES['fotos']['tmp_name'][$key]))
 							{
-								throw new \Exception('Imagem inválida');
+								throw new \Exception("Imagem '{$dados}' inválida");
 							}
 							elseif($_FILES['fotos']['size'][$key] > 15000000)//Maior que 15mb
 							{
-								//var_dump($_FILES['fotos']['size'][$key]);
 								throw new \Exception('Imagem não pode ser maior que 15mb');
 							}
 							else
 							{
-								//var_dump(getimagesize($_FILES['fotos']['tmp_name'][$key]));
 								$receita->setFoto(null, time().'_'.$_FILES['fotos']['name'][$key], $_FILES['fotos']['tmp_name'][$key], null);
 							}
 						}
@@ -81,6 +69,7 @@
 				catch(\Exception $e)
 				{
 					$erro = $e->getMessage();
+					require_once('../app/views/sysadm/incluir_receita.php');
 				}
 			}
 			else

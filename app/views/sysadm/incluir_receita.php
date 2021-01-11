@@ -1,17 +1,16 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<?php include_once('../app/views/sysadm/include_head.php'); ?>
 		<link rel='stylesheet' href='<?php echo App\Core\Router::getBaseUrl(); ?>vendor/simditor/styles/simditor.css'>
 		<link rel='stylesheet' href='<?php echo App\Core\Router::getBaseUrl(); ?>css/main.css'>
-		<link rel='stylesheet' href='<?php echo App\Core\Router::getBaseUrl(); ?>css/sysadm/incluir_receita.css'>
-		<!--<link href="<?php echo App\Core\Router::getBaseUrl(); ?>vendor/quill/quill.snow.css" rel="stylesheet">
-		<script src="<?php echo App\Core\Router::getBaseUrl(); ?>vendor/quill/quill.js"></script>-->
+		<link rel='stylesheet' href='<?php echo App\Core\Router::getBaseUrl(); ?>css/sysadm/incluir_receita.min.css'>
 		<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 		<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 		<script src="<?php echo App\Core\Router::getBaseUrl(); ?>js/main.js"></script>
-		<script src="<?php echo App\Core\Router::getBaseUrl(); ?>js/sysadm/incluir_receita.js"></script>
+		<script src="<?php echo App\Core\Router::getBaseUrl(); ?>js/sysadm/incluir_receita.min.js"></script>
 		<title>Sysadm - Incluir Receita</title>
-		<?php if(isset($erro)){ echo "<script>$(document).ready(function(){showToast('{$erro}')})</script>";}//Se tiver erro pego pelo catch?>
+		<?php if(isset($erro)){ echo "<script>$(document).ready(function(){showToast(\"{$erro}\")})</script>";}//Se tiver erro pego pelo catch?>
 	</head>
 	<body>
 		<?php include_once('../app/views/sysadm/nav.php'); ?>
@@ -92,6 +91,5 @@
 			</form>
 		</main>
 		<div id='toast'></div>
-		<?php //include_once('../app/views/sysadm/footer.php'); ?>
 	</body>
 </html>
