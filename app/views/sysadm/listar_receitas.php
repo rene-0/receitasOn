@@ -1,9 +1,9 @@
 <html>
 	<head>
 		<?php include_once('../app/views/sysadm/include_head.php'); ?>
-		<link rel='stylesheet' href='<?php echo App\Core\Router::getBaseUrl(); ?>css/sysadm/listar_receitas.css'>
+		<link rel='stylesheet' href='<?php echo App\Core\Router::getBaseUrl(); ?>css/sysadm/listar_receitas.min.css'>
 		<script src='<?php echo App\Core\Router::getBaseUrl(); ?>js/sysadm/main.js'></script>
-		<script src='<?php echo App\Core\Router::getBaseUrl(); ?>js/sysadm/listar_receita.js'></script>
+		<script src='<?php echo App\Core\Router::getBaseUrl(); ?>js/sysadm/listar_receita.min.js'></script>
 		<title>Sysadm - Listar Receitas</title>
 	</head>
 	<body>
@@ -16,7 +16,7 @@
 				</div>
 				<div>
 					<span>Data</span>
-					<input <?php if(isset($_GET['data']) && !empty($_GET['data'])){ echo "value='{$_GET['titulo']}'";}?> type='date' name='data'>
+					<input <?php if(isset($_GET['data']) && !empty($_GET['data'])){ echo "value='{$_GET['data']}'";}?> type='date' name='data'>
 				</div>
 				<div>
 					<span>Criador</span>

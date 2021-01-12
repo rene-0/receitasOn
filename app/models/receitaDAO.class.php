@@ -6,7 +6,7 @@
 		function buscarUm($receita)
 		{
 			//$sql = "SELECT * FROM receitas WHERE id_receita = ?";
-			$sql = "SELECT id_receita, titulo, temp_preparo, rendimento, adicionais, DATE_FORMAT(data_criacao,'%d/%m/%Y') 'data_criacao', DATE_FORMAT(data_modificacao,'%d/%m/%Y') 'data_modificacao', r.ativo,(20*IFNULL((SELECT AVG(star) FROM stars WHERE id_receita = r.id_receita),0)) 'estrelas', a.nome 'nome_adm', a.id_adm, u.nome 'nome_user'
+			$sql = "SELECT id_receita, titulo, temp_preparo, rendimento, adicionais, DATE_FORMAT(data_criacao,'%d/%m/%Y') 'data_criacao', DATE_FORMAT(data_modificacao,'%d/%m/%Y') 'data_modificacao', r.ativo,(20*IFNULL((SELECT AVG(star) FROM stars WHERE id_receita = r.id_receita),0)) 'estrelas', a.nome 'nome_adm', a.id_adm, u.nome 'nome_user', r.id_usuario, r.id_ureceita
 			FROM receitas r 
 			INNER JOIN adm a ON(r.id_adm = a.id_adm) 
 			LEFT JOIN usuarios u ON(r.id_usuario = u.id_usuario)
@@ -108,26 +108,26 @@
 		function pesquisarReceita($get = null, $page = null, $per_page = null)
 		{
 			//Paginação
-			if($per_page === null){$per_page = 10;}//Para se eu esquecer de definir
-			if($page === null){$page = 0;}//Para se eu esquecer de definir
-			$on = $page*$per_page;
+				if($per_page === null){$per_page = 10;}//Para se eu esquecer de definir
+				if($page === null){$page = 0;}//Para se eu esquecer de definir
+				$on = $page*$per_page;
 			//Cria o where
-			$where = "";
-			if(isset($get['titulo']) && !empty($get['titulo']))
-			{
-				$where .= "titulo LIKE :titulo AND ";
-			}
-			if(isset($get['data']) && !empty($get['data']))
-			{
-				$where .= "data_criacao = :data AND ";
-			}
+				$where = "";
+				if(isset($get['titulo']) && !empty($get['titulo']))
+				{
+					$where .= "titulo LIKE :titulo AND ";
+				}
+				if(isset($get['data']) && !empty($get['data']))
+				{
+					$where .= "data_criacao = :data AND ";
+				}
+			//Cria o where
 			$sql = "SELECT r.id_receita, titulo, temp_preparo, rendimento, adicionais, DATE_FORMAT(data_criacao,'%d/%m/%Y') 'data_criacao', DATE_FORMAT(data_modificacao,'%d/%m/%Y') 'data_modificacao', r.ativo,(20*IFNULL((SELECT AVG(star) FROM stars WHERE id_receita = r.id_receita),0)) 'estrelas', a.nome 'nome_adm', u.nome 'nome_user', caminho, f.nome 'nome_foto'
 			FROM receitas r 
 			INNER JOIN adm a ON(r.id_adm = a.id_adm) 
 			LEFT JOIN usuarios u ON(r.id_usuario = u.id_usuario)
 			INNER JOIN fotos f ON(f.id_receita = r.id_receita)
 			WHERE {$where} r.ativo = 's' AND capa = 's'";
-			
 			$this->getConec();
 			$stm = Conexao::$conec->prepare($sql);
 			if(isset($get['titulo']) && !empty($get['titulo']))
@@ -154,9 +154,7 @@
 			{
 				$where .= "data_criacao = :data AND ";
 			}
-			//$sql = "SELECT COUNT(r.id_receita) 'paginas' FROM receitas r INNER JOIN adm a ON(r.id_adm = a.id_adm) LEFT JOIN usuarios u ON(r.id_usuario = u.id_usuario) {$where}";
 			$sql = "SELECT COUNT(id_receita) 'paginas' FROM receitas WHERE {$where} ativo = 's'";
-			//echo $sql;
 			$this->getConec();
 			$stm = Conexao::$conec->prepare($sql);
 			if(isset($get['titulo']) && !empty($get['titulo']))
@@ -175,39 +173,39 @@
 		function sysadmPesquisarReceita($get = null,$page = null,$per_page = null)
 		{
 			//Paginação
-			if($per_page === null){$per_page = 10;}//Para se eu esquecer de definir
-			if($page === null){$page = 0;}//Para se eu esquecer de definir
-			$on = $page*$per_page;
+				if($per_page === null){$per_page = 10;}//Para se eu esquecer de definir
+				if($page === null){$page = 0;}//Para se eu esquecer de definir
+				$on = $page*$per_page;
 			//Paginação
 			//Cria o where
-			$where = "";
-			if(isset($get['titulo']) && !empty($get['titulo']))
-			{
-				$where .= "titulo LIKE :titulo AND ";
-			}
-			if(isset($get['data']) && !empty($get['data']))
-			{
-				$where .= "data_criacao = :data AND ";
-			}
-			if(isset($get['criador']) && !empty($get['criador']))
-			{
-				$where .= "a.nome = :criadora OR u.nome = :criadoru AND ";
-			}
+				$where = "";
+				if(isset($get['titulo']) && !empty($get['titulo']))
+				{
+					$where .= "titulo LIKE :titulo AND ";
+				}
+				if(isset($get['data']) && !empty($get['data']))
+				{
+					$where .= "data_criacao = :data AND ";
+				}
+				if(isset($get['criador']) && !empty($get['criador']))
+				{
+					$where .= "a.nome = :criadora OR u.nome = :criadoru AND ";
+				}
 			//Cria o where
-			$sql = "SELECT id_receita, titulo, temp_preparo, rendimento, adicionais, DATE_FORMAT(data_criacao,'%d/%m/%Y') 'data_criacao', DATE_FORMAT(data_modificacao,'%d/%m/%Y') 'data_modificacao', r.ativo,(20*IFNULL((SELECT AVG(star) FROM stars WHERE id_receita = r.id_receita),0)) 'estrelas', a.nome 'nome_adm', u.nome 'nome_user'
-			FROM receitas r 
-			INNER JOIN adm a ON(r.id_adm = a.id_adm) 
-			LEFT JOIN usuarios u ON(r.id_usuario = u.id_usuario)
-			WHERE {$where} r.ativo = 's'
-			LIMIT :on,:per_page";
-			$this->getConec();
-			$stm = Conexao::$conec->prepare($sql);
+				$sql = "SELECT id_receita, titulo, temp_preparo, rendimento, adicionais, DATE_FORMAT(data_criacao,'%d/%m/%Y') 'data_criacao', DATE_FORMAT(data_modificacao,'%d/%m/%Y') 'data_modificacao', r.ativo,(20*IFNULL((SELECT AVG(star) FROM stars WHERE id_receita = r.id_receita),0)) 'estrelas', a.nome 'nome_adm', u.nome 'nome_user'
+				FROM receitas r 
+				INNER JOIN adm a ON(r.id_adm = a.id_adm) 
+				LEFT JOIN usuarios u ON(r.id_usuario = u.id_usuario)
+				WHERE {$where} r.ativo = 's'
+				LIMIT :on,:per_page";
+				$this->getConec();
+				$stm = Conexao::$conec->prepare($sql);
 			//Cria os bindValues
 			if(isset($get['titulo']) && !empty($get['titulo']))
 			{
 				$stm->bindValue(':titulo','%'.$_GET['titulo'].'%');
 			}
-			if(isset($getT['data']) && !empty($get['data']))
+			if(isset($get['data']) && !empty($get['data']))
 			{
 				$stm->bindValue(':data',$_GET['data']);
 			}
@@ -245,7 +243,6 @@
 				$where = substr($where,0,-4);
 			}
 			$sql = "SELECT COUNT(r.id_receita) 'paginas' FROM receitas r INNER JOIN adm a ON(r.id_adm = a.id_adm) LEFT JOIN usuarios u ON(r.id_usuario = u.id_usuario) {$where}";
-			//echo $sql;
 			$this->getConec();
 			$stm = Conexao::$conec->prepare($sql);
 			if($get != null)
@@ -254,7 +251,7 @@
 				{
 					$stm->bindValue(':titulo','%'.$_GET['titulo'].'%');
 				}
-				if(isset($getT['data']) && !empty($get['data']))
+				if(isset($get['data']) && !empty($get['data']))
 				{
 					$stm->bindValue(':data',$_GET['data']);
 				}
@@ -574,17 +571,13 @@
 									{
 										$base_dir = dirname(dirname(dirname(__FILE__)));//C:\xampp\htdocs\receitasOn
 										$ex = explode('/',$dados->caminho);
-										$file = "{$base_dir}\\public\\{$ex[count($ex)-2]}\\{$ex[count($ex)-1]}";//O aquivo que vai ser deletado
+										$file = "{$base_dir}/public/{$ex[count($ex)-2]}/{$ex[count($ex)-1]}";//O aquivo que vai ser deletado
 										if(file_exists($file))//Só deleta se ele existir
 										{
 											if(!unlink($file))
 											{
 												throw new \Exeception("Erro ao deletar imagem!");
 											}
-										}
-										else
-										{
-											//Quando criar o logger - Colocar no log que o aquivo que está tentando ser deletado não existe
 										}
 									}
 									Conexao::$conec->commit();
@@ -595,7 +588,6 @@
 					}
 				}
 			}
-			//$sql = "DELETE FROM receitas WHERE id_receita = ?";
 			//Depois de deletar a receita, remover as fotos da receita
 		}
 		

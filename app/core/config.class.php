@@ -18,6 +18,6 @@
 		//const DB_PASSWORD = 'Receita$#';
 		
 		//Desativado mostra uma messagem de erro generica (Produção), ativado mostra o erro detalhado (Desenvolvimento)
-		const SHOW_ERRORS = false;
+		const SHOW_ERRORS = true;
 	}
 ?>

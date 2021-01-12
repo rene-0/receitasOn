@@ -11,21 +11,14 @@
 		
 		protected function before()
 		{
-			//echo "Antes";
-			//Teste de login
-			parent::before();
+			parent::before();//Teste de login
 		}
 		
 		protected function after()
-		{
-			//echo "Depois";
-		}
+		{ }
 		
 		protected function index($page = null)
 		{
-			//echo "Olá do index do sysadm!";
-			//var_dump($_GET);
-			//var_dump($ret);
 			$receitasDAO = new \App\Models\ReceitaDAO();
 			//Paginação
 				$per_page = 10;
@@ -52,46 +45,44 @@
 				$get_url = substr($get_url,0,-1);
 			//Paginação
 			$ret = $receitasDAO->sysadmPesquisarReceita($_GET,$page,$per_page);
-			//var_dump($paginas);
 			require_once('../app/views/sysadm/listar_receitas.php');
 		}
 		
 		protected function deletarReceita()
 		{
-			//var_dump($_POST);
+			header('Content-type: application/json');
 			//SE FOR UMA RECEITA ENVIADA POR UM USUÁRIO E NÃO UM ADM USAR OUTRA FUNÇÃO
-			if(isset($_SESSION['adm']['id_adm']))
+			if(isset($_POST['id_receita']))
 			{
-				if(isset($_POST['id_receita']))
+				$receitaDAO = new \App\Models\ReceitaDAO();
+				$receita = new \App\Models\Receita();
+				$receita->setId_receita($_POST['id_receita']);
+				$ret = $receitaDAO->buscarUm($receita);
+				if($ret->id_usuario === null)
 				{
-					$receitaDAO = new \App\Models\ReceitaDAO();
-					$receita = new \App\Models\Receita();
-					$receita->setId_receita($_POST['id_receita']);
 					$ret = $receitaDAO->deletar($receita);
 					if($ret)
 					{
-						echo "true";
+						echo json_encode('{"result" : true, "msg" : "Receita removida"}');
 					}
 					else
 					{
-						echo "Erro ao inserir";
+						echo json_encode('{"result" : false, "msg" : "Erro ao remover receita"}');
+					}
+				}
+				else
+				{
+					$ret = $receitaDAO->deletarEnvio($receita,$ret->id_ureceita);
+					if($ret)
+					{
+						echo json_encode('{"result" : true, "msg" : "Receita removida"}');
+					}
+					else
+					{
+						echo json_encode('{"result" : false, "msg" : "Erro ao remover receita"}');
 					}
 				}
 			}
-			else
-			{
-				//O que eu faço se não estiver logado
-				//Talvez responder com um 404
-			}
 		}
-		
-		/*protected function teste()
-		{
-			$receitaDAO = new \App\Models\ReceitaDAO();
-			$receita = new \App\Models\Receita();
-			$receita->setId_receita('bananas');
-			$ret = $receitaDAO->deletar($receita);
-			var_dump($ret);
-		}*/
 	}
 ?>
