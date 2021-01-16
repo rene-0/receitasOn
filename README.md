@@ -1,7 +1,7 @@
 # receitasOn
 receitasOn é um site comum de receitas criado para fazer parte do meu portfólio. É possível visualiza-lo [aqui](https://rene.dev.br/receitasOn/public/)
 ### Status do projeto
-**Em contrução** :construction:
+**Pausado** :construction:
 ### Funções
 - [x] Cadastro de usuário
 - [x] Pesquisa de receitas
